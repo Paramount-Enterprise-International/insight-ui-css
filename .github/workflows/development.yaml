@@ -1,0 +1,45 @@
+name: Build Dev CSS
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build-dev-css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout development branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CSS (Vite)
+        run: npm run build
+
+      # Upload dist/insight.css to a release with tag "dev"
+      - name: Publish dev CSS to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: dev
+          name: "Dev CSS (latest)"
+          body: "Automatically built from development branch."
+          draft: false
+          prerelease: true
+          files: |
+            dist/insight.css
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print dev URL
+        run: |
+          echo "Dev CSS URL:"
+          echo "https://github.com/Paramount-Enterprise-International/insight-ui-css/releases/download/dev/insight.css"

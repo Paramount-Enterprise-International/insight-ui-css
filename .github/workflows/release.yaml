@@ -1,0 +1,49 @@
+name: Build Release CSS
+
+on:
+  release:
+    types:
+      - released # fires when a release is published (not draft)
+
+jobs:
+  build-release-css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show release info
+        run: |
+          echo "Release tag: ${{ github.event.release.tag_name }}"
+          echo "Release name: ${{ github.event.release.name }}"
+
+      - name: Checkout code at release tag
+        uses: actions/checkout@v4
+        with:
+          # Checkout the commit associated with the release tag
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CSS (Vite)
+        run: npm run build
+
+      # Attach the built CSS to the existing release
+      - name: Upload CSS asset to this Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: |
+            dist/insight.css
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print production URL
+        run: |
+          echo "Prod CSS URL:"
+          echo "https://github.com/Paramount-Enterprise-International/insight-ui-css/releases/download/${{ github.event.release.tag_name }}/insight.css"
