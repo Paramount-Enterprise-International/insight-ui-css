@@ -1,0 +1,68 @@
+i-alert {
+  .i-alert {
+    --mat-dialog-content-padding: var(--i-spacing-xl) var(--i-spacing-md) var(--i-spacing-sm);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: var(--i-dialog-max-width);
+
+    .i-dialog-content {
+      ic {
+        margin-top: var(--i-spacing-md);
+        margin-bottom: var(--i-spacing-md);
+      }
+
+      h4 {
+        font-weight: 600;
+        text-align: center;
+      }
+
+      p {
+        color: var(--i-color-text-light);
+        text-align: center;
+      }
+    }
+
+    &.i-alert-information {
+      .i-dialog-content {
+        i,
+        h4 {
+          color: var(--i-color-primary);
+        }
+      }
+    }
+
+    &.i-alert-success {
+      .i-dialog-content {
+        i,
+        h4 {
+          color: var(--i-color-success);
+        }
+      }
+    }
+
+    &.i-alert-warning {
+      .i-dialog-content {
+        i,
+        h4 {
+          color: var(--i-color-warning);
+        }
+      }
+    }
+    &.i-alert-danger {
+      .i-dialog-content {
+        i,
+        h4 {
+          color: var(--i-color-danger);
+        }
+      }
+    }
+
+    .i-dialog-actions {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+ic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .i-icon-xs {
+    font-size: var(--i-icon-xs);
+  }
+
+  .i-icon-sm {
+    font-size: var(--i-icon-sm);
+  }
+
+  .i-icon-md {
+    font-size: var(--i-icon-md);
+  }
+
+  .i-icon-lg {
+    font-size: var(--i-icon-lg);
+  }
+
+  .i-icon-xl {
+    font-size: var(--i-icon-xl);
+  }
+
+  .i-icon-2xl {
+    font-size: var(--i-icon-2xl);
+  }
+}

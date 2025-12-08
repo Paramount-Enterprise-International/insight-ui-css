@@ -1,0 +1,18 @@
+:root {
+  --i-border: 1px solid var(--i-color-border);
+  --i-border-dotted: 1px dotted var(--i-color-border);
+  --i-border-light: 1px solid var(--i-color-border-light);
+  --i-border-light-dotted: 1px dotted var(--i-color-border-light);
+}
+
+.no-border {
+  border: none;
+}
+
+.no-radius {
+  border-radius: 0;
+}
+
+.border {
+  border: var(--i-border);
+}

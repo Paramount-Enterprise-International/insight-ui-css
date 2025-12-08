@@ -1,0 +1,24 @@
+.scroll {
+  overflow: hidden;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--i-radius-full);
+    background-color: var(--i-color-primary);
+  }
+
+  &.scroll-y {
+    overflow-y: auto;
+    /* overflow-x: hidden; */
+  }
+
+  &.scroll-x {
+    /* overflow-y: hidden; */
+    overflow-x: auto;
+  }
+}
