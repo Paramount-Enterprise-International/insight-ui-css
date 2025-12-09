@@ -25,6 +25,7 @@ ih-root {
       border-bottom: var(--i-border);
       background-color: var(--i-color-gray-100);
       padding: var(--i-padding-2xs) var(--i-padding-lg);
+
       .ih-content-breadcrumb {
         display: inline-flex;
         justify-content: center;
@@ -33,13 +34,16 @@ ih-root {
         height: 28px;
         font-size: var(--i-font-size-sm);
         font-family: var(--i-font-family-heading);
+
         &.ih-content-breadcrumb__separator {
           padding: 0 var(--i-padding-2xs);
         }
+
         &:is(a) {
           cursor: pointer;
           padding: 0 var(--i-padding-sm);
         }
+
         &:is(a):hover {
           background-color: var(--i-color-white);
         }

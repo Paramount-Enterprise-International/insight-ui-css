@@ -1,5 +1,5 @@
-i-alert {
-  .i-alert {
+i-confirm {
+  .i-confirm {
     --mat-dialog-content-padding: var(--i-spacing-xl) var(--i-spacing-md) var(--i-spacing-sm);
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@ i-alert {
       }
     }
 
-    &.i-alert-information {
+    &.i-confirm-information {
       .i-dialog-content {
         i,
         h4 {
@@ -34,7 +34,7 @@ i-alert {
       }
     }
 
-    &.i-alert-success {
+    &.i-confirm-success {
       .i-dialog-content {
         i,
         h4 {
@@ -43,7 +43,7 @@ i-alert {
       }
     }
 
-    &.i-alert-warning {
+    &.i-confirm-warning {
       .i-dialog-content {
         i,
         h4 {
@@ -52,7 +52,7 @@ i-alert {
       }
     }
 
-    &.i-alert-danger {
+    &.i-confirm-danger {
       .i-dialog-content {
         i,
         h4 {

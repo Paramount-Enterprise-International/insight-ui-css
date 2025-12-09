@@ -1,0 +1,311 @@
+/* Shared base for all width utilities */
+/* Shared base for all width utilities */
+:is(
+  .w-full,
+  .w-4,
+  .w-8,
+  .w-12,
+  .w-16,
+  .w-20,
+  .w-24,
+  .w-28,
+  .w-32,
+  .w-36,
+  .w-40,
+  .w-48,
+  .w-56,
+  .w-64,
+  .w-72,
+  .w-80,
+  .w-88,
+  .w-96,
+  .w-104,
+  .w-112,
+  .w-120,
+  .w-128,
+  .w-136,
+  .w-144,
+  .w-152,
+  .w-160,
+  .w-168,
+  .w-176,
+  .w-184,
+  .w-192,
+  .w-200,
+  .w-208,
+  .w-216,
+  .w-224,
+  .w-232,
+  .w-240,
+  .w-248,
+  .w-256,
+  .w-264,
+  .w-272,
+  .w-280,
+  .w-288,
+  .w-296,
+  .w-304,
+  .w-312,
+  .w-320,
+  .w-328,
+  .w-336,
+  .w-344,
+  .w-352,
+  .w-360,
+  .w-368,
+  .w-376,
+  .w-384,
+  .w-392,
+  .w-400,
+  .w-408,
+  .w-416
+) {
+  box-sizing: border-box;
+  width: var(--i-size-w);
+  min-width: var(--i-size-w);
+  max-width: var(--i-size-w);
+}
+
+/* Full width */
+.w-full {
+  --i-size-w: 100%;
+}
+
+/* Fill remaining space in flex containers */
+.w-fill {
+  --i-size-w: auto;
+  flex: 1 1 0%;
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Small range: 4px → 40px (step 4) */
+.w-4 {
+  --i-size-w: 4px;
+}
+
+.w-8 {
+  --i-size-w: 8px;
+}
+
+.w-12 {
+  --i-size-w: 12px;
+}
+
+.w-16 {
+  --i-size-w: 16px;
+}
+
+.w-20 {
+  --i-size-w: 20px;
+}
+
+.w-24 {
+  --i-size-w: 24px;
+}
+
+.w-28 {
+  --i-size-w: 28px;
+}
+
+.w-32 {
+  --i-size-w: 32px;
+}
+
+.w-36 {
+  --i-size-w: 36px;
+}
+
+.w-40 {
+  --i-size-w: 40px;
+}
+
+/* Large range: 48px → 400px (step 8) */
+.w-48 {
+  --i-size-w: 48px;
+}
+
+.w-56 {
+  --i-size-w: 56px;
+}
+
+.w-64 {
+  --i-size-w: 64px;
+}
+
+.w-72 {
+  --i-size-w: 72px;
+}
+
+.w-80 {
+  --i-size-w: 80px;
+}
+
+.w-88 {
+  --i-size-w: 88px;
+}
+
+.w-96 {
+  --i-size-w: 96px;
+}
+
+.w-104 {
+  --i-size-w: 104px;
+}
+
+.w-112 {
+  --i-size-w: 112px;
+}
+
+.w-120 {
+  --i-size-w: 120px;
+}
+
+.w-128 {
+  --i-size-w: 128px;
+}
+
+.w-136 {
+  --i-size-w: 136px;
+}
+
+.w-144 {
+  --i-size-w: 144px;
+}
+
+.w-152 {
+  --i-size-w: 152px;
+}
+
+.w-160 {
+  --i-size-w: 160px;
+}
+
+.w-168 {
+  --i-size-w: 168px;
+}
+
+.w-176 {
+  --i-size-w: 176px;
+}
+
+.w-184 {
+  --i-size-w: 184px;
+}
+
+.w-192 {
+  --i-size-w: 192px;
+}
+
+.w-200 {
+  --i-size-w: 200px;
+}
+
+.w-208 {
+  --i-size-w: 208px;
+}
+
+.w-216 {
+  --i-size-w: 216px;
+}
+
+.w-224 {
+  --i-size-w: 224px;
+}
+
+.w-232 {
+  --i-size-w: 232px;
+}
+
+.w-240 {
+  --i-size-w: 240px;
+}
+
+.w-248 {
+  --i-size-w: 248px;
+}
+
+.w-256 {
+  --i-size-w: 256px;
+}
+
+.w-264 {
+  --i-size-w: 264px;
+}
+
+.w-272 {
+  --i-size-w: 272px;
+}
+
+.w-280 {
+  --i-size-w: 280px;
+}
+
+.w-288 {
+  --i-size-w: 288px;
+}
+
+.w-296 {
+  --i-size-w: 296px;
+}
+
+.w-304 {
+  --i-size-w: 304px;
+}
+
+.w-312 {
+  --i-size-w: 312px;
+}
+
+.w-320 {
+  --i-size-w: 320px;
+}
+
+.w-328 {
+  --i-size-w: 328px;
+}
+
+.w-336 {
+  --i-size-w: 336px;
+}
+
+.w-344 {
+  --i-size-w: 344px;
+}
+
+.w-352 {
+  --i-size-w: 352px;
+}
+
+.w-360 {
+  --i-size-w: 360px;
+}
+
+.w-368 {
+  --i-size-w: 368px;
+}
+
+.w-376 {
+  --i-size-w: 376px;
+}
+
+.w-384 {
+  --i-size-w: 384px;
+}
+
+.w-392 {
+  --i-size-w: 392px;
+}
+
+.w-400 {
+  --i-size-w: 400px;
+}
+
+.w-408 {
+  --i-size-w: 408px;
+}
+
+.w-416 {
+  --i-size-w: 416px;
+}

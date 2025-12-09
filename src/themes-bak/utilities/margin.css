@@ -1,0 +1,128 @@
+/* MARGIN */
+.m-2xs {
+  margin: var(--i-margin-2xs);
+}
+.m-xs {
+  margin: var(--i-margin-xs);
+}
+.m-sm {
+  margin: var(--i-margin-sm);
+}
+.m-md {
+  margin: var(--i-margin-md);
+}
+.m-lg {
+  margin: var(--i-margin-lg);
+}
+
+/* MARGIN TOP */
+.mt-2xs {
+  margin-top: var(--i-margin-2xs);
+}
+.mt-xs {
+  margin-top: var(--i-margin-xs);
+}
+.mt-sm {
+  margin-top: var(--i-margin-sm);
+}
+.mt-md {
+  margin-top: var(--i-margin-md);
+}
+.mt-lg {
+  margin-top: var(--i-margin-lg);
+}
+
+/* MARGIN BOTTOM */
+.mb-2xs {
+  margin-bottom: var(--i-margin-2xs);
+}
+.mb-xs {
+  margin-bottom: var(--i-margin-xs);
+}
+.mb-sm {
+  margin-bottom: var(--i-margin-sm);
+}
+.mb-md {
+  margin-bottom: var(--i-margin-md);
+}
+.mb-lg {
+  margin-bottom: var(--i-margin-lg);
+}
+
+/* MARGIN START */
+.ms-2xs {
+  margin-left: var(--i-margin-2xs);
+}
+.ms-xs {
+  margin-left: var(--i-margin-xs);
+}
+.ms-sm {
+  margin-left: var(--i-margin-sm);
+}
+.ms-md {
+  margin-left: var(--i-margin-md);
+}
+.ms-lg {
+  margin-left: var(--i-margin-lg);
+}
+
+/* MARGIN END */
+.me-2xs {
+  margin-right: var(--i-margin-2xs);
+}
+.me-xs {
+  margin-right: var(--i-margin-xs);
+}
+.me-sm {
+  margin-right: var(--i-margin-sm);
+}
+.me-md {
+  margin-right: var(--i-margin-md);
+}
+.me-lg {
+  margin-right: var(--i-margin-lg);
+}
+
+/* MARGIN HORIZONTAL */
+.mx-2xs {
+  margin-right: var(--i-margin-2xs);
+  margin-left: var(--i-margin-2xs);
+}
+.mx-xs {
+  margin-right: var(--i-margin-xs);
+  margin-left: var(--i-margin-xs);
+}
+.mx-sm {
+  margin-right: var(--i-margin-sm);
+  margin-left: var(--i-margin-sm);
+}
+.mx-md {
+  margin-right: var(--i-margin-md);
+  margin-left: var(--i-margin-md);
+}
+.mx-lg {
+  margin-right: var(--i-margin-lg);
+  margin-left: var(--i-margin-lg);
+}
+
+/* MARGIN VERTICAL */
+.my-2xs {
+  margin-top: var(--i-margin-2xs);
+  margin-bottom: var(--i-margin-2xs);
+}
+.my-xs {
+  margin-top: var(--i-margin-xs);
+  margin-bottom: var(--i-margin-xs);
+}
+.my-sm {
+  margin-top: var(--i-margin-sm);
+  margin-bottom: var(--i-margin-sm);
+}
+.my-md {
+  margin-top: var(--i-margin-md);
+  margin-bottom: var(--i-margin-md);
+}
+.my-lg {
+  margin-top: var(--i-margin-lg);
+  margin-bottom: var(--i-margin-lg);
+}

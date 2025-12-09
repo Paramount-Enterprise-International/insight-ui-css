@@ -6,8 +6,7 @@ i-button,
   --i-button-border-radius: var(--i-radius-md);
   --i-button-padding: 0 var(--i-padding-md);
   --i-button-height: var(--i-size-md);
-  /* --i-button-min-width: var(--i-size-md); */
-  --i-button-min-width: 0px;
+  --i-button-min-width: var(--i-size-md);
   --i-button-font-size: var(--i-font-size-md);
   --i-button-border: none;
   --i-button-color: var(--i-color-white);

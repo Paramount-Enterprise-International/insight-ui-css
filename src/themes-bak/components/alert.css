@@ -1,6 +1,7 @@
 i-alert {
   .i-alert {
     --mat-dialog-content-padding: var(--i-spacing-xl) var(--i-spacing-md) var(--i-spacing-sm);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +22,6 @@ i-alert {
       p {
         color: var(--i-color-text-light);
         text-align: center;
-        /* margin-bottom: var(--i-spacing-md); */
       }
     }
 
@@ -51,7 +51,6 @@ i-alert {
         }
       }
     }
-
     &.i-alert-danger {
       .i-dialog-content {
         i,

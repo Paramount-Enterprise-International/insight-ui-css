@@ -1,3 +1,4 @@
+@import './variables/overrides.css';
 @import './variables/color.css';
 @import './variables/elevation.css';
 @import './variables/gap.css';

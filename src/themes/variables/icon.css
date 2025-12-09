@@ -1,4 +1,5 @@
 :root {
+  --fa-width: auto;
   --i-icon-xs: 10px;
   --i-icon-sm: 12px;
   --i-icon-md: 14px;
@@ -7,13 +8,4 @@
   --i-icon-2xl: 32px;
   --i-icon-3xl: 64px;
   --i-icon-4xl: 96px;
-  /*
-  --i-font-size-xs: var(--i-size-s10);
-  --i-font-size-sm: var(--i-size-s12);
-  --i-font-size-md: var(--i-size-s14);
-  --i-font-size-lg: var(--i-size-s16);
-  --i-font-size-xl: var(--i-size-s20);
-  --i-font-size-2xl: var(--i-size-s24);
-  --i-font-size-3xl: var(--i-size-s28);
-  --i-font-size-4xl: var(--i-size-s32); */
 }

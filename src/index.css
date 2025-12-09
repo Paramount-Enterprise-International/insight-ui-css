@@ -2,3 +2,9 @@
 @import './themes/variables.css';
 @import './themes/utilities.css';
 @import './themes/components.css';
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
