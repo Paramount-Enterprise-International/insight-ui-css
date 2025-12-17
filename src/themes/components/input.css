@@ -74,6 +74,11 @@ i-input {
     > ic {
       padding: 0px var(--i-padding-2xs);
     }
+
+    i-loading {
+      width: var(--i-size-xs);
+      height: var(--i-size-xs);
+    }
   }
 
   &:has(input:focus) {

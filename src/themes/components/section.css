@@ -46,4 +46,50 @@ i-section {
     flex-direction: column;
     padding: var(--i-spacing-sm);
   }
+
+  i-section-tabs,
+  .i-section-tabs {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--i-color-gray-50);
+    padding: 0px;
+    .i-section-tabs-headers {
+      display: flex;
+      border-bottom: var(--i-border);
+      .i-section-tabs-header {
+        display: flex;
+        flex: 1 1 0%;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border-right: var(--i-border);
+        background-color: var(--i-color-gray-50);
+        padding: var(--i-padding-sm) 0;
+        width: auto;
+        min-width: 0;
+        max-width: 100%;
+        font-size: var(--i-font-size-md);
+        font-family: var(--i-font-family-heading);
+        &.active {
+          box-shadow: inset 0px -3px 0px var(--i-color-blue-500);
+          background-color: var(--i-color-white);
+        }
+        &:last-child {
+          border-right: none;
+        }
+        &:hover {
+          background-color: var(--i-color-gray-100);
+        }
+        &:active {
+          background-color: var(--i-color-gray-200);
+        }
+      }
+    }
+    .i-section-tabs-content {
+      padding: var(--i-padding-md) var(--i-padding-lg);
+      &.scroll.scroll-y {
+        box-sizing: border-box;
+      }
+    }
+  }
 }

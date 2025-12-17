@@ -3,6 +3,7 @@
 @import './components/alert.css';
 @import './components/card.css';
 @import './components/clickable.css';
+@import './components/code-viewer.css';
 @import './components/confirm.css';
 @import './components/datepicker.css';
 @import './components/dialog.css';

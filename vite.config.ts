@@ -1,14 +1,15 @@
 // vite.config.ts
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [],
+  plugins: [tailwindcss()],
   build: {
     lib: {
       entry: 'src/index.ts',
-      formats: ['es'],                 // modern ESM is best for web components
-      fileName: () => 'insight.js',    // <-- exact JS filename
-      name: 'InsightUI',               // only used if you later add 'umd'
+      formats: ['es'], // modern ESM is best for web components
+      fileName: () => 'insight.js', // <-- exact JS filename
+      name: 'InsightUI', // only used if you later add 'umd'
     },
     target: 'es2022',
     sourcemap: false,
@@ -20,9 +21,9 @@ export default defineConfig({
       output: {
         inlineDynamicImports: true,
         manualChunks: undefined,
-        entryFileNames: 'insight.js',   // <-- JS name
+        entryFileNames: 'insight.js', // <-- JS name
         chunkFileNames: 'insight.js',
-        assetFileNames: 'insight.[ext]' // <-- CSS name becomes insight.css
+        assetFileNames: 'insight.[ext]', // <-- CSS name becomes insight.css
       },
 
       // Choose ONE strategy below:
@@ -32,17 +33,6 @@ export default defineConfig({
 
       // (B) Externalize lit (if host already has it)
       // external: ['lit', 'lit/decorators.js'],
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        silenceDeprecations: [
-          'import',
-          'color-functions',
-          'global-builtin',
-        ],
-      },
     },
   },
 });

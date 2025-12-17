@@ -1,4 +1,6 @@
-ic {
+ic,
+i-icon,
+.i-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;

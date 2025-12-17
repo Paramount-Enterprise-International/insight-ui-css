@@ -7,29 +7,29 @@ ih-root {
 
       li {
         display: flex;
-        padding: 0px;
         flex-direction: column;
+        padding: 0px;
 
-
-        &>small {
+        & > small {
+          padding: 0 var(--i-spacing-xs) var(--i-spacing-4xs);
+          color: var(--i-color-gray-400);
           font-size: var(--i-font-size-sm);
           font-family: var(--i-font-family-heading);
-          color: var(--i-color-gray-400);
-          padding: 0 var(--i-spacing-xs) var(--i-spacing-4xs);
         }
 
-        &>div,
+        & > div,
         a {
           display: flex;
           flex-direction: row;
           align-items: center;
           gap: var(--i-spacing-3xs);
-          padding: var(--i-spacing-3xs) var(--i-spacing-xs);
-          margin: var(--i-spacing-5xs) 0px;
           cursor: pointer;
+          margin: var(--i-spacing-5xs) 0px;
+          border-radius: var(--i-radius-md);
+          padding: var(--i-spacing-3xs) var(--i-spacing-xs);
           text-decoration: none;
 
-          span {
+          span:not(.highlight-search) {
             display: inline-block;
             width: var(--i-spacing-sm);
           }
@@ -40,13 +40,21 @@ ih-root {
           }
 
           h6 {
-            font-family: var(--i-font-family-heading);
-            font-size: var(--i-font-size-sm);
             flex: 1 1 100%;
+            font-size: var(--i-font-size-sm);
+            font-family: var(--i-font-family-heading);
+          }
+
+          &.is-selected {
+            background-color: var(--i-color-blue-50);
+            color: var(--i-color-blue-900);
+          }
+
+          &.is-selected h6 {
+            font-weight: 600;
           }
 
           &:hover {
-            border-radius: var(--i-radius-md);
             background-color: var(--i-color-gray-100);
 
             i,
@@ -56,17 +64,17 @@ ih-root {
           }
         }
 
-        >ul {
-          padding: 0px;
-          margin: 0px;
-          list-style: none;
+        > ul {
           display: flex;
           flex-direction: column;
+          margin: 0px;
+          padding: 0px;
+          list-style: none;
 
           &.expanded {
             display: flex;
-            background-color: var(--i-color-gray-100);
             border-radius: var(--i-radius-md);
+            background-color: var(--i-color-gray-100);
           }
 
           &.collapsed {

@@ -1,0 +1,106 @@
+i-code-viewer {
+  display: block;
+}
+
+.i-code-viewer {
+  border: var(--i-border);
+  border-radius: var(--i-radius-md);
+  background-color: var(--i-color-gray-50);
+  overflow: hidden;
+}
+
+/* ================= Header ================= */
+
+.i-code-viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--i-border);
+  background-color: var(--i-color-white);
+  padding: var(--i-padding-sm) var(--i-padding-md);
+}
+
+.i-code-viewer.compact .i-code-viewer-header {
+  padding: var(--i-padding-xs) var(--i-padding-md);
+}
+
+.i-code-viewer-title-text {
+  font-size: var(--i-font-size-sm);
+  font-family: var(--i-font-family-heading);
+}
+
+.i-code-viewer-actions {
+  display: flex;
+  gap: var(--i-spacing-xs);
+}
+
+/* ================= Body ================= */
+
+.i-code-viewer-body {
+  display: flex;
+  min-width: 0;
+}
+
+/* Line numbers */
+
+.i-code-viewer-gutter {
+  border-right: var(--i-border);
+  background-color: var(--i-color-gray-100);
+  padding: var(--i-padding-md) var(--i-padding-sm);
+  color: var(--i-color-gray-500);
+  font-size: var(--i-font-size-sm);
+  line-height: 1.6;
+  font-family: var(--i-font-family-mono);
+  user-select: none;
+}
+
+.i-code-viewer-line {
+  min-width: 24px;
+  text-align: right;
+}
+
+/* Code block */
+
+.i-code-viewer-pre {
+  margin: 0;
+  background: transparent;
+  padding: var(--i-padding-md);
+  width: 100%;
+  min-width: 0;
+  font-size: var(--i-font-size-sm);
+  line-height: 1.6;
+  font-family: var(--i-font-family-mono);
+  white-space: pre;
+}
+
+/* Wrap long lines */
+
+.i-code-viewer.wrap .i-code-viewer-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Scroll support (uses your existing utilities) */
+
+.i-code-viewer-pre.scroll.scroll-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ================= States ================= */
+
+.i-code-viewer-loading,
+.i-code-viewer-error {
+  border-bottom: var(--i-border);
+  padding: var(--i-padding-sm) var(--i-padding-md);
+  font-size: var(--i-font-size-sm);
+}
+
+.i-code-viewer-loading {
+  background-color: var(--i-color-gray-50);
+}
+
+.i-code-viewer-error {
+  background-color: var(--i-color-red-50);
+  color: var(--i-color-red-700);
+}

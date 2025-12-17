@@ -2,9 +2,11 @@
 @import './themes/variables.css';
 @import './themes/utilities.css';
 @import './themes/components.css';
-
+@import 'highlight.js/styles/github.css';
+@import 'tailwindcss';
+/*
 *,
 :after,
 :before {
   box-sizing: border-box;
-}
+} */

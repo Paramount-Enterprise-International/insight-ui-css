@@ -54,17 +54,33 @@ ih-root {
     }
 
     .ih-sidebar-search {
+      display: flex;
       border-bottom: var(--i-border);
       background-color: var(--i-color-gray-100);
       /* padding: var(--i-spacing-4xs) var(--i-spacing-sm); */
       padding: var(--i-padding-2xs) var(--i-padding-lg);
 
       input {
+        display: flex;
+        flex: 0 0 100%;
+        justify-content: center;
+        align-items: center;
+        border: var(--i-input-border);
+        border-radius: var(--i-radius-md);
+        background-color: var(--i-color-white);
+        padding: 0 var(--i-padding-sm);
         height: 28px;
 
         &::placeholder {
           color: var(--i-color-gray-400);
           font-size: var(--i-font-size-sm);
+        }
+
+        &:focus {
+          outline-color: var(--i-color-blue-500);
+          outline-style: solid;
+          outline-width: 2px;
+          outline-offset: -2px;
         }
       }
     }

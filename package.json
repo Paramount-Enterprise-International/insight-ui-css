@@ -15,5 +15,10 @@
     "prettier-plugin-css-order": "^2.1.2",
     "typescript": "~5.9.3",
     "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "highlight.js": "^11.11.1",
+    "tailwindcss": "^4.1.17"
   }
 }

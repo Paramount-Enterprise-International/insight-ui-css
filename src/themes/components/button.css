@@ -101,13 +101,13 @@ i-button,
 
   &[variant='warning'],
   &.i-btn-warning {
-    --i-button-background-color: var(--i-color-yellow-500);
-    --i-button-hover-background-color: var(--i-color-yellow-600);
-    --i-button-active-background-color: var(--i-color-yellow-700);
+    --i-button-background-color: var(--i-color-amber-500);
+    --i-button-hover-background-color: var(--i-color-amber-600);
+    --i-button-active-background-color: var(--i-color-amber-700);
     &[aria-disabled='true'] {
-      --i-button-background-color: var(--i-color-yellow-300);
-      --i-button-hover-background-color: var(--i-color-yellow-300);
-      --i-button-active-background-color: var(--i-color-yellow-300);
+      --i-button-background-color: var(--i-color-amber-300);
+      --i-button-hover-background-color: var(--i-color-amber-300);
+      --i-button-active-background-color: var(--i-color-amber-300);
     }
   }
 

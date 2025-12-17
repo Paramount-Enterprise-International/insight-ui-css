@@ -1,5 +1,6 @@
 .highlight-search {
-  background-color: var(--i-color-primary);
-  color: #ffffff;
-  font-weight: bold;
+  background-color: var(--i-color-blue-200);
+  /* color: #ffffff; */
+  color: var(--i-color-black);
+  /* font-weight: bold; */
 }
