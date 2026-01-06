@@ -1,0 +1,15 @@
+/* font-family */
+@layer utilities {
+  .font-heading {
+    font-family: var(--i-font-heading);
+  }
+  .font-body {
+    font-family: var(--i-font-body);
+  }
+  .font-sans {
+    font-family: var(--i-font-sans);
+  }
+  .font-mono {
+    font-family: var(--i-font-mono);
+  }
+}

@@ -1,0 +1,36 @@
+/* text-decoration */
+@layer utilities {
+  .underline {
+    text-decoration-line: underline;
+  }
+  .line-through {
+    text-decoration-line: line-through;
+  }
+  .no-underline {
+    text-decoration-line: none;
+  }
+  .decoration-solid {
+    text-decoration-style: solid;
+  }
+  .decoration-dashed {
+    text-decoration-style: dashed;
+  }
+  .decoration-dotted {
+    text-decoration-style: dotted;
+  }
+  .decoration-double {
+    text-decoration-style: double;
+  }
+  .decoration-wavy {
+    text-decoration-style: wavy;
+  }
+  .underline-offset-1 {
+    text-underline-offset: 1px;
+  }
+  .underline-offset-2 {
+    text-underline-offset: 2px;
+  }
+  .underline-offset-4 {
+    text-underline-offset: 4px;
+  }
+}

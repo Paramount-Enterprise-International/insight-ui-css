@@ -1,49 +1,201 @@
-name: Build Release CSS
+name: Build & Publish @insight/css from Release Tag
 
 on:
   release:
-    types:
-      - released # fires when a release is published (not draft)
+    types: [published] # Only when YOU publish a Release in GitHub UI
+
+env:
+  BUILD_BRANCH: build # Branch that will hold the built CSS package
+  MAIN_BRANCH: main # Branch to merge the release source back into
+  PKG_NAME: "@insight/css" # CSS package name
+
+permissions:
+  contents: write # Needed to push branches & tags
 
 jobs:
-  build-release-css:
+  release-build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show release info
-        run: |
-          echo "Release tag: ${{ github.event.release.tag_name }}"
-          echo "Release name: ${{ github.event.release.name }}"
-
-      - name: Checkout code at release tag
+      # 1) Checkout source at the tag created by your Release
+      - name: Checkout source at tag
         uses: actions/checkout@v4
         with:
-          # Checkout the commit associated with the release tag
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.event.release.tag_name }} # e.g. "1.0.2"
+          fetch-depth: 0
 
+      # 2) Extract version from tag (tag == version, e.g. "1.0.2")
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          echo "Tag from release: $TAG"
+
+          # Basic semver-ish validation
+          if [[ ! "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag '$TAG' does not look like x.y.z (e.g. 1.0.2)."
+            exit 1
+          fi
+
+          echo "version=$TAG" >> "$GITHUB_OUTPUT"
+
+      # 3) Set up Node
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
+          node-version: 20
 
+      # 4) Install deps
       - name: Install dependencies
-        run: npm ci
-
-      - name: Build CSS (Vite)
-        run: npm run build
-
-      # Attach the built CSS to the existing release
-      - name: Upload CSS asset to this Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.event.release.tag_name }}
-          files: |
-            dist/insight.css
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Print production URL
         run: |
-          echo "Prod CSS URL:"
-          echo "https://github.com/Paramount-Enterprise-International/insight-ui-css/releases/download/${{ github.event.release.tag_name }}/insight.css"
+          rm -rf node_modules package-lock.json
+          npm install
+
+      # 5) Sync package.json version to tag (for the built artifact)
+      - name: Sync package.json version to tag
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          echo "Setting package.json version to ${VERSION}"
+
+          jq ".version = \"${VERSION}\"" package.json > package.tmp
+          mv package.tmp package.json
+
+          cat package.json
+
+      # 6) Build CSS with Vite (tsc && vite build, per your package.json)
+      - name: Build CSS package (Vite)
+        run: |
+          npm run build
+          echo "Built files in dist:"
+          ls -la dist || true
+
+          if [ ! -f dist/insight.css ]; then
+            echo "❌ dist/insight.css not found. Check vite.config.ts / build output."
+            exit 1
+          fi
+
+      # 7) Prepare build artifacts (rename insight.css -> index.css)
+      - name: Prepare build artifacts
+        run: |
+          rm -rf release-tmp
+          mkdir -p release-tmp
+
+          # Copy and rename CSS so consumers can just import 'index.css'
+          cp dist/insight.css release-tmp/index.css
+
+          echo "Artifacts in release-tmp:"
+          ls -la release-tmp
+
+      # 8) Checkout / create the build branch
+      - name: Checkout or create build branch
+        run: |
+          git fetch origin "$BUILD_BRANCH" || true
+
+          if git show-ref --quiet "refs/heads/$BUILD_BRANCH"; then
+            git switch "$BUILD_BRANCH"
+          else
+            git switch -c "$BUILD_BRANCH"
+          fi
+
+      # 9) Replace build branch contents with artifacts + minimal package.json
+      - name: Replace build branch contents with artifacts
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          PKG_NAME="${{ env.PKG_NAME }}"
+
+          # Remove everything tracked in this branch
+          git rm -rf . || true
+
+          # Copy built CSS into root
+          cp -R release-tmp/* .
+
+          # Create minimal package.json for the build branch
+          cat > package.json <<EOF
+          {
+            "name": "${PKG_NAME}",
+            "version": "${VERSION}",
+            "main": "index.css",
+            "style": "index.css"
+          }
+          EOF
+
+          # Safety: remove any node_modules if they ended up here
+          rm -rf node_modules
+          find . -type d -name "node_modules" -prune -exec rm -rf {} \;
+
+          echo "Resulting tree on $BUILD_BRANCH:"
+          ls -la
+
+      # 10) Commit & push build branch
+      - name: Commit and push build branch
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .
+          if git diff --cached --quiet; then
+            echo "🟡 No changes to commit on $BUILD_BRANCH"
+          else
+            git commit -m "release: @insight/css v${VERSION}"
+            git push origin "$BUILD_BRANCH" --force
+          fi
+
+      # 11) Move version tag + latest to this build commit
+      - name: Update tags to point at built artifacts
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          echo "Moving tag '${VERSION}' to current build on branch ${BUILD_BRANCH}"
+
+          # Ensure we have all tags
+          git fetch --tags origin
+
+          # Move the version tag to this commit
+          git tag -f "$VERSION"
+          git push origin "$VERSION" --force
+
+          # Optional: maintain a moving 'latest' tag as well
+          echo "Updating 'latest' tag"
+          git tag -f latest
+          git push origin latest --force
+
+      # 12) Merge release source branch back into main (same pattern as Angular)
+      - name: Merge release source branch back into main
+        run: |
+          SRC_REF="${{ github.event.release.target_commitish }}"
+          MAIN_BRANCH="${{ env.MAIN_BRANCH }}"
+
+          echo "Release target_commitish: $SRC_REF"
+          echo "Main branch: $MAIN_BRANCH"
+
+          # If the release was created from main itself, skip merge
+          if [ "$SRC_REF" = "$MAIN_BRANCH" ]; then
+            echo "Release source is already '$MAIN_BRANCH'. Nothing to merge."
+            exit 0
+          fi
+
+          # Fetch main and the source ref (branch or commit)
+          git fetch origin "$MAIN_BRANCH"
+
+          # Try to fetch source ref as branch; if it fails, assume it's a commit SHA
+          if git ls-remote --exit-code origin "$SRC_REF" >/dev/null 2>&1; then
+            echo "Fetching source branch '$SRC_REF' from origin"
+            git fetch origin "$SRC_REF":"$SRC_REF"
+          else
+            echo "'$SRC_REF' does not look like a remote branch, treating as commit/sha"
+          fi
+
+          # Checkout / create local main tracking branch
+          if git show-ref --quiet "refs/heads/$MAIN_BRANCH"; then
+            git switch "$MAIN_BRANCH"
+          else
+            git switch -c "$MAIN_BRANCH" "origin/$MAIN_BRANCH"
+          fi
+
+          # Merge the release source into main
+          echo "Merging '$SRC_REF' into '$MAIN_BRANCH'"
+          git merge --no-ff "$SRC_REF" -m "chore: merge release $SRC_REF into $MAIN_BRANCH"
+
+          # Push updated main
+          git push origin "$MAIN_BRANCH"

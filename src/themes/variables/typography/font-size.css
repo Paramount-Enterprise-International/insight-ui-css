@@ -1,0 +1,15 @@
+/* font sizes */
+@layer themes {
+  :root {
+    --i-text-2xs: 8px;
+    --i-text-xs: 10px;
+    --i-text-sm: 12px;
+    --i-text-md: 14px;
+    --i-text-lg: 16px;
+    --i-text-xl: 20px;
+    --i-text-2xl: 24px;
+    --i-text-3xl: 32px;
+    --i-text-4xl: 48px;
+    --i-text-5xl: 56px;
+  }
+}

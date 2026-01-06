@@ -1,18 +1,20 @@
-.i-clickable {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: var(--i-radius-md);
-  padding: var(--i-padding-xs);
+@layer components {
+  .i-clickable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: var(--i-radius-md);
+    padding: var(--i-padding-xs);
 
-  img {
-    width: var(--i-icon-lg);
-    height: var(--i-icon-lg);
-    object-fit: fill;
-  }
+    img {
+      width: var(--i-icon-lg);
+      height: var(--i-icon-lg);
+      object-fit: fill;
+    }
 
-  &:hover {
-    background-color: var(--i-color-gray-100);
+    &:hover {
+      background-color: var(--i-color-gray-100);
+    }
   }
 }

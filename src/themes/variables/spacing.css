@@ -1,13 +1,15 @@
-:root {
-  --i-spacing-6xs: 2px;
-  --i-spacing-5xs: 4px;
-  --i-spacing-4xs: 6px;
-  --i-spacing-3xs: 8px;
-  --i-spacing-2xs: 10px;
-  --i-spacing-xs: 12px;
-  --i-spacing-sm: 16px;
-  --i-spacing-md: 24px;
-  --i-spacing-lg: 32px;
-  --i-spacing-xl: 48px;
-  --i-spacing-2xl: 64px;
+@layer themes {
+  :root {
+    --i-spacing-6xs: 2px;
+    --i-spacing-5xs: 4px;
+    --i-spacing-4xs: 6px;
+    --i-spacing-3xs: 8px;
+    --i-spacing-2xs: 10px;
+    --i-spacing-xs: 12px;
+    --i-spacing-sm: 16px;
+    --i-spacing-md: 24px;
+    --i-spacing-lg: 32px;
+    --i-spacing-xl: 48px;
+    --i-spacing-2xl: 64px;
+  }
 }

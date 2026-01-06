@@ -1,0 +1,21 @@
+/* letter-spacing */
+@layer utilities {
+  .tracking-tighter {
+    letter-spacing: var(--i-tracking-tighter);
+  }
+  .tracking-tight {
+    letter-spacing: var(--i-tracking-tight);
+  }
+  .tracking-normal {
+    letter-spacing: var(--i-tracking-normal);
+  }
+  .tracking-wide {
+    letter-spacing: var(--i-tracking-wide);
+  }
+  .tracking-wider {
+    letter-spacing: var(--i-tracking-wider);
+  }
+  .tracking-widest {
+    letter-spacing: var(--i-tracking-widest);
+  }
+}

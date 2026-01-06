@@ -1,0 +1,14 @@
+/* word-break */
+@layer utilities {
+  .break-normal {
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+  .break-words {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .break-all {
+    word-break: break-all;
+  }
+}

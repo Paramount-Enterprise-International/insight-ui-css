@@ -1,8 +1,8 @@
-@import './components/base.css';
 @import './components/button.css';
 @import './components/alert.css';
 @import './components/card.css';
 @import './components/clickable.css';
+@import './components/code-viewer.css';
 @import './components/confirm.css';
 @import './components/datepicker.css';
 @import './components/dialog.css';
@@ -14,5 +14,4 @@
 @import './components/loading.css';
 @import './components/section.css';
 @import './components/select.css';
-@import './components/sidebar.css';
 @import './components/textarea.css';

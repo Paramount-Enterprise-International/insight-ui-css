@@ -1,0 +1,21 @@
+/* line-height */
+@layer utilities {
+  .leading-none {
+    line-height: var(--i-leading-none);
+  }
+  .leading-tight {
+    line-height: var(--i-leading-tight);
+  }
+  .leading-snug {
+    line-height: var(--i-leading-snug);
+  }
+  .leading-normal {
+    line-height: var(--i-leading-normal);
+  }
+  .leading-relaxed {
+    line-height: var(--i-leading-relaxed);
+  }
+  .leading-loose {
+    line-height: var(--i-leading-loose);
+  }
+}

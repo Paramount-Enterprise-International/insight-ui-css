@@ -1,0 +1,11 @@
+/* letter spacing */
+@layer themes {
+  :root {
+    --i-tracking-tighter: -0.05em;
+    --i-tracking-tight: -0.025em;
+    --i-tracking-normal: 0;
+    --i-tracking-wide: 0.025em;
+    --i-tracking-wider: 0.05em;
+    --i-tracking-widest: 0.1em;
+  }
+}

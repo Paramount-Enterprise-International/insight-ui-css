@@ -1,4 +1,4 @@
-ih-root {
+@layer components {
   ih-content {
     display: flex;
     flex: 1 1 auto;
@@ -6,6 +6,7 @@ ih-root {
     min-width: 0;
 
     .ih-content-header {
+      --i-background-color: var(--i-color-white);
       display: flex;
       flex: 0 0 var(--i-header-height);
       flex-direction: row;
@@ -15,7 +16,7 @@ ih-root {
       padding: 0px var(--i-padding-lg);
 
       h1 {
-        font-size: var(--i-font-size-lg);
+        font-size: var(--i-text-lg);
       }
     }
 
@@ -25,25 +26,21 @@ ih-root {
       border-bottom: var(--i-border);
       background-color: var(--i-color-gray-100);
       padding: var(--i-padding-2xs) var(--i-padding-lg);
-
       .ih-content-breadcrumb {
         display: inline-flex;
         justify-content: center;
         align-items: center;
         border-radius: var(--i-radius-md);
         height: 28px;
-        font-size: var(--i-font-size-sm);
-        font-family: var(--i-font-family-heading);
-
+        font-size: var(--i-text-sm);
+        font-family: var(--i-font-heading);
         &.ih-content-breadcrumb__separator {
           padding: 0 var(--i-padding-2xs);
         }
-
         &:is(a) {
           cursor: pointer;
           padding: 0 var(--i-padding-sm);
         }
-
         &:is(a):hover {
           background-color: var(--i-color-white);
         }
@@ -56,24 +53,25 @@ ih-root {
       padding: var(--i-padding-lg);
       width: 100%;
       /* > ir-root > :not(i-dialog-outlet):not(router-outlet) {
-        display: flex;
-        flex-direction: column;
-        gap: var(--i-gap-2xl);
-        width: 100%;
-        height: 100%;
-      } */
-      ir-root {
-        display: flex;
-        min-height: 100%;
-        overflow: hidden;
-        > *:not(router-outlet):not(i-dialog-outlet) {
           display: flex;
           flex-direction: column;
           gap: var(--i-gap-2xl);
           width: 100%;
-          min-height: 100%;
-        }
-      }
+          height: 100%;
+        } */
+    }
+  }
+
+  ir-root {
+    display: flex;
+    min-height: 100%;
+    overflow: hidden;
+    > *:not(router-outlet):not(i-dialog-outlet) {
+      display: flex;
+      flex-direction: column;
+      gap: var(--i-gap-2xl);
+      width: 100%;
+      min-height: 100%;
     }
   }
 }
