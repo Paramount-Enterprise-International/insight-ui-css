@@ -1,10 +1,8 @@
-:root {
-  --i-input-border-color: var(--i-color-gray-200);
-  --i-input-border-focus-color: var(--i-color-blue-500);
-  --i-input-border: 1px solid var(--i-input-border-color);
-  --i-input-border: 1px solid var(--i-input-border-color);
-}
-
-.text-light {
-  color: var(--i-color-text-light) !important;
+@layer themes {
+  :root {
+    --i-input-border-color: var(--i-color-gray-200);
+    --i-input-border-focus-color: var(--i-color-blue-500);
+    --i-input-border: 1px solid var(--i-input-border-color);
+    --i-input-border: 1px solid var(--i-input-border-color);
+  }
 }

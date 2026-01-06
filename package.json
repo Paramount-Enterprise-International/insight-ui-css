@@ -1,5 +1,5 @@
 {
-  "name": "insight-ui-css",
+  "name": "@insight/css",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,24 +1,38 @@
-.scroll {
-  overflow: hidden;
+@layer themes {
+  :root {
+    --i-scroll-overflow-x: hidden;
+    --i-scroll-overflow-y: hidden;
+    --i-scroll-thumb-radius: var(--i-radius-full);
+    --i-scroll-thumb-color: var(--i-color-blue);
+  }
+}
 
-  &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    background-color: rgba(255, 255, 255, 0.1);
+@layer utilities {
+  .scroll {
+    --i-scroll-overflow-x: hidden;
+    --i-scroll-overflow-y: hidden;
+    --i-scroll-thumb-radius: var(--i-radius-full);
+    --i-scroll-thumb-color: var(--i-color-blue);
+    overflow-x: var(--i-scroll-overflow-x);
+    overflow-y: var(--i-scroll-overflow-y);
+
+    &::-webkit-scrollbar {
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: var(--i-scroll-thumb-radius);
+      background-color: var(--i-scroll-thumb-color);
+    }
   }
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: var(--i-radius-full);
-    background-color: var(--i-color-primary);
+  .scroll-x {
+    --i-scroll-overflow-x: auto;
   }
 
-  &.scroll-y {
-    overflow-y: auto;
-    /* overflow-x: hidden; */
-  }
-
-  &.scroll-x {
-    /* overflow-y: hidden; */
-    overflow-x: auto;
+  .scroll-y {
+    --i-scroll-overflow-y: auto;
   }
 }

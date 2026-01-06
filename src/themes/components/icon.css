@@ -1,32 +1,47 @@
-ic,
-i-icon,
-.i-icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@layer components {
+  ic,
+  i-icon,
+  .i-icon {
+    --i-background-color: initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  .i-icon-xs {
-    font-size: var(--i-icon-xs);
-  }
+    i {
+      --i-background-color: initial;
+    }
 
-  .i-icon-sm {
-    font-size: var(--i-icon-sm);
-  }
+    .i-icon-xs {
+      font-size: var(--i-icon-xs);
+    }
 
-  .i-icon-md {
-    font-size: var(--i-icon-md);
-  }
+    .i-icon-sm {
+      font-size: var(--i-icon-sm);
+    }
 
-  .i-icon-lg {
-    font-size: var(--i-icon-lg);
-  }
+    .i-icon-md {
+      font-size: var(--i-icon-md);
+    }
 
-  .i-icon-xl {
-    font-size: var(--i-icon-xl);
-  }
+    .i-icon-lg {
+      font-size: var(--i-icon-lg);
+    }
 
-  .i-icon-2xl {
-    font-size: var(--i-icon-2xl);
+    .i-icon-xl {
+      font-size: var(--i-icon-xl);
+    }
+
+    .i-icon-2xl {
+      font-size: var(--i-icon-2xl);
+    }
+
+    .i-icon-3xl {
+      font-size: var(--i-icon-3xl);
+    }
+
+    .i-icon-4xl {
+      font-size: var(--i-icon-4xl);
+    }
   }
 }

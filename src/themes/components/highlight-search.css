@@ -1,6 +1,8 @@
-.highlight-search {
-  background-color: var(--i-color-blue-200);
-  /* color: #ffffff; */
-  color: var(--i-color-black);
-  /* font-weight: bold; */
+@layer components {
+  .highlight-search {
+    background-color: var(--i-color-blue-200);
+    /* color: #ffffff; */
+    color: var(--i-color-black);
+    /* font-weight: bold; */
+  }
 }

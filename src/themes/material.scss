@@ -10,7 +10,7 @@ html {
 
   @include mat.dialog-overrides((container-shape: var(--i-radius-md),
       container-color: var(--i-color-gray-50),
-      subhead-size: var(--i-font-size-lg),
+      subhead-size: var(--i-text-lg),
       headline-padding: var(--i-spacing-xs) var(--i-spacing-md),
       content-padding: var(--i-spacing-sm) var(--i-spacing-md),
       with-actions-content-padding: var(--i-spacing-sm) var(--i-spacing-md),

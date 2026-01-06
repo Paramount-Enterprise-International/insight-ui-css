@@ -3,117 +3,128 @@
  * Version: 1.0.0
  */
 
-i-input {
-  --i-input-label-font-size: var(--i-font-size-sm);
-  --i-input-label-color: var(--i-color-text-light);
-  --i-input-border-color: var(--i-color-gray-200);
-  --i-input-border: 1px solid var(--i-input-border-color);
-  --i-input-color: var(--i-color-text);
-  --i-input-font-size: var(--i-font-size-md);
-  --i-input-padding-y: var(--i-padding-xs);
-  --i-input-padding-x: var(--i-padding-2xs);
-  /* --i-input-padding-x: var(--i-padding-sm); */
-  --i-input-background: var(--i-color-white);
-  --i-input-focus-border-color: var(--i-color-blue-500);
-  --i-input-box-shadow: var(--i-shadow-xs);
-
-  --i-button-size-xs: var(--i-size-xs);
-  --i-button-size-sm: var(--i-size-sm);
-  --i-button-size-md: var(--i-size-md);
-  --i-button-size-lg: var(--i-size-lg);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--i-gap-xs);
-  box-shadow: var(--i-input-box-shadow);
-  border: var(--i-input-border);
-  border-radius: var(--i-radius-md);
-  background-color: var(--i-input-background);
-  /* padding: 0 calc(var(--i-input-padding-x) / 2); */
-  padding: 0 var(--i-input-padding-x);
-  height: var(--i-button-size-md);
-
-  input {
-    flex: 1 1 0%;
-    outline: none;
-    border: none;
-    border-radius: var(--i-radius-md);
-    background: transparent;
-    padding: var(--i-input-padding-y) var(--i-input-padding-x);
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    color: var(--i-input-color);
-    font-size: var(--i-input-font-size);
-    font-family: var(--i-font-family-body);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    &::placeholder {
-      color: var(--i-color-gray-300) !important;
-    }
-    &:not(:first-child) {
-      padding-left: 0px;
-    }
-    &:not(:last-child) {
-      padding-right: 0px;
-    }
-  }
-
-  i-input-addon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &[kind='button'],
-    &[kind='link'] {
-      cursor: pointer;
-    }
-
-    span,
-    > ic {
-      padding: 0px var(--i-padding-2xs);
-    }
-
-    i-loading {
-      width: var(--i-size-xs);
-      height: var(--i-size-xs);
-    }
-  }
-
-  &:has(input:focus) {
-    outline-color: var(--i-input-focus-border-color);
-    outline-style: solid;
-    outline-width: 2px;
-    outline-offset: -2px;
-  }
-
-  /* Invalid state using aria-invalid */
-  &:has(input[aria-invalid='true']) {
-    --i-input-focus-border-color: var(--i-color-danger);
-    outline-color: var(--i-input-focus-border-color);
-    outline-style: solid;
-    outline-width: 2px;
-    outline-offset: -2px;
-    /* border-color: var(--i-textarea-border-color); */
+@layer themes {
+  :root {
+    --i-input-border-color: var(--i-color-gray-300);
   }
 }
 
-i-fc-input {
-  .i-fc-input__label {
-    font-size: var(--i-font-size-sm) !important;
-    .i-fc-input__required {
-      color: var(--i-color-danger);
+@layer components {
+  i-input {
+    --i-input-label-font-size: var(--i-text-sm);
+    --i-input-label-color: var(--i-text-subtle-color);
+    --i-input-border-color: var(--i-color-gray-200);
+    --i-input-border: 1px solid var(--i-input-border-color);
+    --i-input-color: var(--i-text-color);
+    --i-input-font-size: var(--i-text-md);
+    --i-input-padding-y: var(--i-padding-xs);
+    --i-input-padding-x: var(--i-padding-2xs);
+    /* --i-input-padding-x: var(--i-padding-sm); */
+    --i-input-background: var(--i-color-white);
+    --i-input-focus-border-color: var(--i-color-blue-500);
+    --i-input-box-shadow: var(--i-shadow-xs);
+
+    --i-button-size-xs: var(--i-size-xs);
+    --i-button-size-sm: var(--i-size-sm);
+    --i-button-size-md: var(--i-size-md);
+    --i-button-size-lg: var(--i-size-lg);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--i-gap-xs);
+    box-shadow: var(--i-input-box-shadow);
+    border: var(--i-input-border);
+    border-radius: var(--i-radius-md);
+    background-color: var(--i-input-background);
+    /* padding: 0 calc(var(--i-input-padding-x) / 2); */
+    padding: 0 var(--i-input-padding-x);
+    height: var(--i-button-size-md);
+
+    input {
+      flex: 1 1 0%;
+      outline: none;
+      border: none;
+      border-radius: var(--i-radius-md);
+      background: transparent;
+      padding: var(--i-input-padding-y) var(--i-input-padding-x);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      color: var(--i-input-color);
+      font-size: var(--i-input-font-size);
+      font-family: var(--i-font-body);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      &::placeholder {
+        color: var(--i-color-gray-300) !important;
+      }
+      &:not(:first-child) {
+        padding-left: 0px;
+      }
+      &:not(:last-child) {
+        padding-right: 0px;
+      }
+    }
+
+    i-input-addon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &[kind='button'],
+      &[kind='link'] {
+        cursor: pointer;
+      }
+
+      span,
+      > ic {
+        padding: 0px var(--i-padding-2xs);
+      }
+
+      i-loading {
+        width: var(--i-size-xs);
+        height: var(--i-size-xs);
+      }
+    }
+
+    &:has(input:focus) {
+      outline-color: var(--i-input-focus-border-color);
+      outline-style: solid;
+      outline-width: 2px;
+      outline-offset: -2px;
+    }
+
+    /* Invalid state using aria-invalid */
+    &:has(input[aria-invalid='true']) {
+      --i-input-focus-border-color: var(--i-color-danger);
+      outline-color: var(--i-input-focus-border-color);
+      outline-style: solid;
+      outline-width: 2px;
+      outline-offset: -2px;
+      /* border-color: var(--i-textarea-border-color); */
     }
   }
 
-  .i-fc-input__error {
-    height: 16px;
-    color: var(--i-color-danger);
-    font-size: var(--i-font-size-sm) !important;
-  }
+  i-fc-input {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--i-padding-2xs);
+    .i-fc-input__label {
+      font-size: var(--i-text-sm) !important;
+      .i-fc-input__required {
+        color: var(--i-color-danger);
+      }
+    }
 
-  &:not(:has(.i-fc-input__error)) {
-    padding-bottom: var(--i-padding-lg);
+    .i-fc-input__error {
+      height: 16px;
+      color: var(--i-color-danger);
+      font-size: var(--i-text-sm) !important;
+    }
+
+    &:not(:has(.i-fc-input__error)) {
+      padding-bottom: var(--i-padding-xl);
+    }
   }
 }

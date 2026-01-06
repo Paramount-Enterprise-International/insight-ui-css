@@ -1,0 +1,33 @@
+/* font-size */
+@layer utilities {
+  .text-2xs {
+    font-size: var(--i-text-2xs);
+  }
+  .text-xs {
+    font-size: var(--i-text-xs);
+  }
+  .text-sm {
+    font-size: var(--i-text-sm);
+  }
+  .text-md {
+    font-size: var(--i-text-md);
+  }
+  .text-lg {
+    font-size: var(--i-text-lg);
+  }
+  .text-xl {
+    font-size: var(--i-text-xl);
+  }
+  .text-2xl {
+    font-size: var(--i-text-2xl);
+  }
+  .text-3xl {
+    font-size: var(--i-text-3xl);
+  }
+  .text-4xl {
+    font-size: var(--i-text-4xl);
+  }
+  .text-5xl {
+    font-size: var(--i-text-5xl);
+  }
+}

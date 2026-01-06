@@ -1,11 +1,13 @@
-:root {
-  --fa-width: auto;
-  --i-icon-xs: 10px;
-  --i-icon-sm: 12px;
-  --i-icon-md: 14px;
-  --i-icon-lg: 16px;
-  --i-icon-xl: 28px;
-  --i-icon-2xl: 32px;
-  --i-icon-3xl: 64px;
-  --i-icon-4xl: 96px;
+@layer themes {
+  :root {
+    --fa-width: auto;
+    --i-icon-xs: 10px;
+    --i-icon-sm: 12px;
+    --i-icon-md: 14px;
+    --i-icon-lg: 16px;
+    --i-icon-xl: 28px;
+    --i-icon-2xl: 32px;
+    --i-icon-3xl: 64px;
+    --i-icon-4xl: 96px;
+  }
 }

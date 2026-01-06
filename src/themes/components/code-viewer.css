@@ -1,106 +1,123 @@
-i-code-viewer {
-  display: block;
-}
+@layer components {
+  i-code-viewer {
+    display: flex;
+    flex-direction: column;
+  }
 
-.i-code-viewer {
-  border: var(--i-border);
-  border-radius: var(--i-radius-md);
-  background-color: var(--i-color-gray-50);
-  overflow: hidden;
-}
+  .i-code-viewer {
+    --i-background-color: var(--i-color-gray-50);
+    display: flex;
+    border: var(--i-border);
+    border-radius: var(--i-radius-md);
+    height: 100%;
+    overflow: hidden;
+    code {
+      --i-background-color: initial;
+    }
+  }
 
-/* ================= Header ================= */
+  .i-code-viewer-loading,
+  .i-code-viewer-error {
+    border-bottom: var(--i-border);
+    padding: var(--i-padding-sm) var(--i-padding-md);
+    font-size: var(--i-text-sm);
+  }
 
-.i-code-viewer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: var(--i-border);
-  background-color: var(--i-color-white);
-  padding: var(--i-padding-sm) var(--i-padding-md);
-}
+  .i-code-viewer-loading {
+    --i-background-color: var(--i-color-gray-50);
+  }
 
-.i-code-viewer.compact .i-code-viewer-header {
-  padding: var(--i-padding-xs) var(--i-padding-md);
-}
+  .i-code-viewer-error {
+    --i-background-color: var(--i-color-red-50);
+    color: var(--i-color-red-700);
+  }
 
-.i-code-viewer-title-text {
-  font-size: var(--i-font-size-sm);
-  font-family: var(--i-font-family-heading);
-}
+  /* Scroll container */
+  .i-code-viewer-scroll {
+    display: flex;
+    position: relative;
+    flex: 1 1 100%;
+    flex-direction: column;
+    min-width: 0;
+  }
 
-.i-code-viewer-actions {
-  display: flex;
-  gap: var(--i-spacing-xs);
-}
+  /* The row that contains gutter + code */
+  .i-code-viewer-content {
+    --i-background-color: #22272e;
+    flex: 1 1 100%;
+    min-width: 0;
+    color: #adbac7;
+  }
 
-/* ================= Body ================= */
+  /* ✅ Absolute overlay (NOT in flex flow) */
+  .i-code-viewer-overlay {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 2px;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--i-spacing-xs);
+    z-index: 5;
+    /* backdrop-filter: blur(6px); */
+    --i-background-color: transparent;
+    padding: 6px 8px;
+  }
 
-.i-code-viewer-body {
-  display: flex;
-  min-width: 0;
-}
+  /* Make room so first lines don't get covered */
+  .i-code-viewer-scroll.has-overlay .i-code-viewer-gutter {
+    padding-top: 37px;
+  }
+  .i-code-viewer-scroll.has-overlay .i-code-viewer-pre {
+    padding-top: 24px;
+    /* padding-top: calc(var(--i-padding-md) + 34px); */
+  }
 
-/* Line numbers */
+  /* Filetype chip */
+  .i-code-viewer-filetype {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 4px;
+    color: var(--i-color-gray-50);
+    font-weight: var(--i-font-weight-semibold);
+    font-size: var(--i-text-xs);
+    line-height: 1.4;
+    font-family: var(--i-font-heading);
+  }
 
-.i-code-viewer-gutter {
-  border-right: var(--i-border);
-  background-color: var(--i-color-gray-100);
-  padding: var(--i-padding-md) var(--i-padding-sm);
-  color: var(--i-color-gray-500);
-  font-size: var(--i-font-size-sm);
-  line-height: 1.6;
-  font-family: var(--i-font-family-mono);
-  user-select: none;
-}
+  /* Gutter */
+  .i-code-viewer-gutter {
+    --i-background-color: var(--i-color-gray-100);
+    flex: 0 0 auto;
+    border-right: var(--i-border);
+    padding: var(--i-padding-md) var(--i-padding-sm);
+    color: var(--i-color-gray-500);
+    font-size: var(--i-text-sm);
+    line-height: 1.6;
+    font-family: var(--i-font-family-mono);
+    user-select: none;
+  }
 
-.i-code-viewer-line {
-  min-width: 24px;
-  text-align: right;
-}
+  .i-code-viewer-line {
+    min-width: 28px;
+    text-align: right;
+  }
 
-/* Code block */
+  /* Code */
+  .i-code-viewer-pre {
+    margin: 0;
+    --i-background-color: transparent;
+    width: 100%;
+    min-width: 0;
+    font-size: var(--i-text-sm);
+    line-height: 1.6;
+    font-family: var(--i-font-family-mono);
+    white-space: pre;
+  }
 
-.i-code-viewer-pre {
-  margin: 0;
-  background: transparent;
-  padding: var(--i-padding-md);
-  width: 100%;
-  min-width: 0;
-  font-size: var(--i-font-size-sm);
-  line-height: 1.6;
-  font-family: var(--i-font-family-mono);
-  white-space: pre;
-}
-
-/* Wrap long lines */
-
-.i-code-viewer.wrap .i-code-viewer-pre {
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-/* Scroll support (uses your existing utilities) */
-
-.i-code-viewer-pre.scroll.scroll-y {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-/* ================= States ================= */
-
-.i-code-viewer-loading,
-.i-code-viewer-error {
-  border-bottom: var(--i-border);
-  padding: var(--i-padding-sm) var(--i-padding-md);
-  font-size: var(--i-font-size-sm);
-}
-
-.i-code-viewer-loading {
-  background-color: var(--i-color-gray-50);
-}
-
-.i-code-viewer-error {
-  background-color: var(--i-color-red-50);
-  color: var(--i-color-red-700);
+  .i-code-viewer.wrap .i-code-viewer-pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
 }

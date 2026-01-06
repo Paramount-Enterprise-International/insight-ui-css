@@ -2,166 +2,167 @@
  * IDatepicker
  * Version: 1.4.1
  */
+@layer components {
+  i-datepicker {
+    display: flex;
+    position: relative;
+    flex-direction: column;
 
-i-datepicker {
-  display: flex;
-  position: relative;
-  flex-direction: column;
+    .i-datepicker-panel {
+      position: absolute;
+      z-index: 1000;
+      box-sizing: border-box;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--i-input-border-color, #ced4da);
+      border-radius: var(--i-radius-md);
+      background-color: var(--i-color-white, #fff);
+      padding: var(--i-padding-sm);
+      min-width: 260px;
 
-  .i-datepicker-panel {
-    position: absolute;
-    z-index: 1000;
-    box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--i-input-border-color, #ced4da);
-    border-radius: var(--i-radius-md);
-    background-color: var(--i-color-white, #fff);
-    padding: var(--i-padding-sm);
-    min-width: 260px;
+      /* ---- Position modifiers ---- */
 
-    /* ---- Position modifiers ---- */
-
-    /* Bottom-left (default) */
-    &.i-datepicker-panel--bottom,
-    &.i-datepicker-panel--bottom-left {
-      top: 100%;
-      left: 0;
-      margin-top: 4px;
-    }
-
-    /* Bottom-right */
-    &.i-datepicker-panel--bottom-right {
-      top: 100%;
-      right: 0;
-      margin-top: 4px;
-    }
-
-    /* Top-left */
-    &.i-datepicker-panel--top,
-    &.i-datepicker-panel--top-left {
-      bottom: 100%;
-      left: 0;
-      margin-bottom: 4px;
-    }
-
-    /* Top-right */
-    &.i-datepicker-panel--top-right {
-      right: 0;
-      bottom: 100%;
-      margin-bottom: 4px;
-    }
-
-    /* Strict left / right (side attached) */
-    &.i-datepicker-panel--right {
-      top: 0;
-      left: 100%;
-      margin-left: 4px;
-    }
-
-    &.i-datepicker-panel--left {
-      top: 0;
-      right: 100%;
-      margin-right: 4px;
-    }
-
-    .i-datepicker-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--i-padding-xs);
-      margin-bottom: var(--i-padding-md);
-
-      .i-date-picker-month-select {
-        flex: 0 0 110px;
+      /* Bottom-left (default) */
+      &.i-datepicker-panel--bottom,
+      &.i-datepicker-panel--bottom-left {
+        top: 100%;
+        left: 0;
+        margin-top: 4px;
       }
 
-      .i-date-picker-year-select {
-        flex: 0 0 80px;
+      /* Bottom-right */
+      &.i-datepicker-panel--bottom-right {
+        top: 100%;
+        right: 0;
+        margin-top: 4px;
       }
-    }
 
-    .i-datepicker-weekdays {
-      display: flex;
-      margin-bottom: var(--i-padding-sm);
-
-      small {
-        flex: 1 1 0%;
-        color: var(--i-color-text-light);
-        font-size: var(--i-font-size-xs);
-        font-family: var(--i-font-family-heading);
-        text-align: center;
+      /* Top-left */
+      &.i-datepicker-panel--top,
+      &.i-datepicker-panel--top-left {
+        bottom: 100%;
+        left: 0;
+        margin-bottom: 4px;
       }
-    }
 
-    .i-datepicker-weeks {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+      /* Top-right */
+      &.i-datepicker-panel--top-right {
+        right: 0;
+        bottom: 100%;
+        margin-bottom: 4px;
+      }
 
-      .i-datepicker-week {
+      /* Strict left / right (side attached) */
+      &.i-datepicker-panel--right {
+        top: 0;
+        left: 100%;
+        margin-left: 4px;
+      }
+
+      &.i-datepicker-panel--left {
+        top: 0;
+        right: 100%;
+        margin-right: 4px;
+      }
+
+      .i-datepicker-header {
         display: flex;
-        justify-content: space-around;
-        margin-bottom: 2px;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--i-padding-xs);
+        margin-bottom: var(--i-padding-md);
 
-        .i-datepicker-day {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          border: 1px solid transparent;
-          border-radius: var(--i-radius-full);
-          padding: var(--i-padding-2xs) var(--i-padding-sm);
-          width: var(--i-size-sm);
-          height: var(--i-size-sm);
-          color: var(--i-color-gray-300);
-          font-size: var(--i-font-size-xs);
-          font-family: var(--i-font-family-heading);
+        .i-date-picker-month-select {
+          flex: 0 0 110px;
+        }
+
+        .i-date-picker-year-select {
+          flex: 0 0 80px;
+        }
+      }
+
+      .i-datepicker-weekdays {
+        display: flex;
+        margin-bottom: var(--i-padding-sm);
+
+        small {
+          flex: 1 1 0%;
+          color: var(--i-text-subtle-color);
+          font-size: var(--i-text-xs);
+          font-family: var(--i-font-heading);
           text-align: center;
+        }
+      }
 
-          &.current-month {
-            color: var(--i-color-text);
-          }
+      .i-datepicker-weeks {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
 
-          &.today {
-            border-color: var(--i-color-blue-500, #007bff);
-          }
+        .i-datepicker-week {
+          display: flex;
+          justify-content: space-around;
+          margin-bottom: 2px;
 
-          &:hover {
-            background-color: var(--i-color-blue-50);
-          }
+          .i-datepicker-day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: var(--i-radius-full);
+            padding: var(--i-padding-2xs) var(--i-padding-sm);
+            width: var(--i-size-sm);
+            height: var(--i-size-sm);
+            color: var(--i-color-gray-300);
+            font-size: var(--i-text-xs);
+            font-family: var(--i-font-heading);
+            text-align: center;
 
-          &.selected {
-            border-color: var(--i-color-blue-500, #007bff);
-            background-color: var(--i-color-blue-500, #007bff);
-            color: var(--i-color-white, #fff);
+            &.current-month {
+              color: var(--i-text-color);
+            }
+
+            &.today {
+              border-color: var(--i-color-blue-500, #007bff);
+            }
 
             &:hover {
-              border-color: var(--i-color-blue-600, #0056b3);
-              background-color: var(--i-color-blue-600, #0056b3);
+              background-color: var(--i-color-blue-50);
+            }
+
+            &.selected {
+              border-color: var(--i-color-blue-500, #007bff);
+              background-color: var(--i-color-blue-500, #007bff);
+              color: var(--i-color-white, #fff);
+
+              &:hover {
+                border-color: var(--i-color-blue-600, #0056b3);
+                background-color: var(--i-color-blue-600, #0056b3);
+              }
             }
           }
         }
       }
     }
   }
-}
 
-i-fc-datepicker {
-  .i-fc-datepicker__label {
-    font-size: var(--i-font-size-sm) !important;
+  i-fc-datepicker {
+    .i-fc-datepicker__label {
+      font-size: var(--i-text-sm) !important;
 
-    .i-fc-datepicker__required {
-      color: var(--i-color-danger);
+      .i-fc-datepicker__required {
+        color: var(--i-color-danger);
+      }
     }
-  }
 
-  .i-fc-datepicker__error {
-    height: 16px;
-    color: var(--i-color-danger);
-    font-size: var(--i-font-size-sm) !important;
-  }
+    .i-fc-datepicker__error {
+      height: 16px;
+      color: var(--i-color-danger);
+      font-size: var(--i-text-sm) !important;
+    }
 
-  &:not(:has(.i-fc-datepicker__error)) {
-    padding-bottom: var(--i-padding-lg);
+    &:not(:has(.i-fc-datepicker__error)) {
+      padding-bottom: var(--i-padding-lg);
+    }
   }
 }
