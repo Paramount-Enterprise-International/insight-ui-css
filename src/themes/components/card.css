@@ -1,17 +1,12 @@
 @layer components {
   i-card {
-    --i-card-bg-color: var(--i-color-white);
-    --i-card-footer-padding: var(--i-padding-2xs) var(--i-padding-md);
-    --i-card-footer-bg-color: var(--i-color-gray-100);
-    --i-card-footer-bg-hover-color: var(--i-color-gray-200);
-
+    --i-background-color: var(--i-color-white);
     display: flex;
     flex-direction: column;
     cursor: pointer;
     box-shadow: var(--i-shadow-xs);
     border: var(--i-border);
     border-radius: var(--i-radius-lg);
-    background-color: var(--i-card-bg-color);
     overflow: hidden;
 
     a {
@@ -24,6 +19,8 @@
       color: var(--i-text-color);
       i-card-image {
         display: flex;
+        justify-content: center;
+        align-items: center;
       }
       i-card-body {
         display: flex;
@@ -35,21 +32,29 @@
         max-height: 100%;
       }
       i-card-footer {
+        --i-background-color: var(--i-color-gray-100);
         display: flex;
         justify-content: center;
         align-items: center;
         border-top: var(--i-border);
-        background-color: var(--i-card-footer-bg-color);
-        padding: var(--i-card-footer-padding);
+        padding: var(--i-padding-2xs) var(--i-padding-md);
         text-align: center;
       }
     }
 
     &:hover {
-      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.1);
-      background-color: var(--i-color-gray-50);
+      box-shadow: var(--i-shadow-sm);
+      --i-background-color: var(--i-color-gray-50);
       i-card-footer {
-        --i-card-footer-bg-color: var(--i-color-gray-200);
+        --i-background-color: var(--i-color-gray-200);
+      }
+    }
+
+    &:active {
+      box-shadow: var(--i-shadow-xs);
+      --i-background-color: var(--i-color-gray-100);
+      i-card-footer {
+        --i-background-color: var(--i-color-gray-300);
       }
     }
   }

@@ -7,7 +7,6 @@
     --i-button-border-radius: var(--i-radius-md);
     --i-button-padding: 0 var(--i-padding-md);
     --i-button-height: var(--i-size-md);
-    /* --i-button-min-width: var(--i-size-md); */
     --i-button-min-width: 0px;
     --i-button-font-size: var(--i-text-md);
     --i-button-border: none;
@@ -15,17 +14,16 @@
     --i-button-background-color: var(--i-color-blue-500);
     --i-button-hover-background-color: var(--i-color-blue-600);
     --i-button-active-background-color: var(--i-color-blue-700);
+    --i-background-color: var(--i-button-background-color);
 
     display: flex;
     justify-content: center;
     align-items: center;
-
     gap: var(--i-button-gap);
     cursor: pointer;
     box-shadow: var(--i-button-shadow);
     border: var(--i-button-border);
     border-radius: var(--i-button-border-radius);
-    background-color: var(--i-button-background-color);
     padding: var(--i-button-padding);
     min-width: var(--i-button-min-width) !important;
     height: var(--i-button-height);
@@ -146,12 +144,12 @@
     }
 
     &:hover {
-      background-color: var(--i-button-hover-background-color);
+      --i-background-color: var(--i-button-hover-background-color);
     }
 
     &:active {
       --i-button-shadow: var(--i-shadow-xs);
-      background-color: var(--i-button-active-background-color);
+      --i-background-color: var(--i-button-active-background-color);
     }
   }
 }
