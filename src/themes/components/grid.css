@@ -34,7 +34,8 @@
         border-bottom: var(--i-border);
         --i-background-color: var(--i-grid-header-bg);
         /* width: 100%; */
-        min-width: 100%;
+        /* min-width: 100%; */
+        min-width: 0;
         font-weight: 600;
 
         i-grid-header-cell {
@@ -95,7 +96,7 @@
             .i-grid-header-cell__resize-handle {
               position: absolute;
               top: 0;
-              right: -4px; /* align handle to the actual column edge */
+              right: -3px; /* align handle to the actual column edge */
               z-index: 2;
               cursor: col-resize;
               width: 7px; /* clickable area */
@@ -143,6 +144,14 @@
             .i-grid-header-cell__content {
               overflow: unset;
             }
+          }
+
+          &.i-grid-tree-header-content {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
           }
 
           .i-grid-header-cell__content {
@@ -198,9 +207,11 @@
       /* display: flex; */
       display: inline-flex;
       position: relative;
+      flex-wrap: nowrap;
       z-index: 1; /* above viewport background, below header */
       /* width: 100%; */
-      min-width: 100%;
+      /* min-width: 100%; */
+      min-width: 0;
 
       i-grid-cell {
         display: flex;
@@ -213,6 +224,7 @@
 
         /* IMPORTANT: no background here, so row hover color is visible */
         --i-background-color: transparent;
+        box-sizing: border-box;
         padding: var(--i-padding-2xs) var(--i-padding-sm);
 
         min-width: 0;
