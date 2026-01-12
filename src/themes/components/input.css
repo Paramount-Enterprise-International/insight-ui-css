@@ -10,7 +10,8 @@
 }
 
 @layer components {
-  i-input {
+  i-input,
+  .i-input {
     --i-input-label-font-size: var(--i-text-sm);
     --i-input-label-color: var(--i-text-subtle-color);
     --i-input-border-color: var(--i-color-gray-200);
@@ -67,7 +68,8 @@
       }
     }
 
-    i-input-addon {
+    i-input-addon,
+    .i-input-addon {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -78,7 +80,8 @@
       }
 
       span,
-      > ic {
+      > i-icon,
+      > .i-icon {
         padding: 0px var(--i-padding-2xs);
       }
 
@@ -106,12 +109,15 @@
     }
   }
 
-  i-fc-input {
+  i-fc-input,
+  .i-fc-input {
     display: flex;
     flex-direction: column;
     padding-bottom: var(--i-padding-2xs);
+    label:first-child,
     .i-fc-input__label {
       font-size: var(--i-text-sm) !important;
+      text-align: left;
       .i-fc-input__required {
         color: var(--i-color-danger);
       }
@@ -121,6 +127,7 @@
       height: 16px;
       color: var(--i-color-danger);
       font-size: var(--i-text-sm) !important;
+      text-align: left;
     }
 
     &:not(:has(.i-fc-input__error)) {

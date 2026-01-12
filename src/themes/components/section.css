@@ -28,6 +28,12 @@
       }
     }
 
+    i-section-header {
+      h4 {
+        text-align: left;
+      }
+    }
+
     i-section-sub-header {
       --i-background-color: var(--i-color-gray-100);
       padding: var(--i-padding-xs) var(--i-padding-lg);
