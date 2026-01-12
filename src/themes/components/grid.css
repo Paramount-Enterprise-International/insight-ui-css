@@ -1,6 +1,6 @@
 /*
  * IGrid
- * Version: 1.22.0
+ * Version: 1.23.2 (cleaned)
  */
 @layer components {
   .i-grid {
@@ -9,277 +9,83 @@
     --i-grid-header-bg-hover: var(--i-color-gray-200);
     --i-grid-row-bg: var(--i-color-white);
     --i-grid-row-bg-hover: var(--i-color-blue-50);
-    /* --i-grid-row-bg-odd: rgba(var(--i-color-blue-50-rgb), 0.2); */
     --i-grid-row-bg-odd: var(--i-color-gray-50);
+
     display: flex;
     flex-direction: column;
     border: none;
     border-bottom-right-radius: var(--i-radius-md);
     border-bottom-left-radius: var(--i-radius-md);
     width: 100%;
+    min-height: 0; /* allow inner scroll */
     overflow: hidden;
     font-size: 14px;
 
-    /* VIEWPORT: scrollable body (vertical + horizontal) */
+    /* =========================================================
+     * VIEWPORT
+     * ========================================================= */
     .i-grid-viewport {
+      flex: 1 1 auto;
       width: 100%;
+      min-height: 0; /* REQUIRED for flex + overflow */
       overflow: auto;
-
-      /* --------------------------------------------------
-     * HEADER ROW
-     * -------------------------------------------------- */
-      i-grid-header-row {
-        /* display: flex; */
-        display: inline-flex;
-        border-bottom: var(--i-border);
-        --i-background-color: var(--i-grid-header-bg);
-        /* width: 100%; */
-        min-width: 100%;
-        font-weight: 600;
-
-        i-grid-header-cell {
-          display: inline-flex;
-          position: relative; /* needed for resize handle + sticky */
-          flex: 1 1 0;
-          justify-content: space-between;
-          align-items: center;
-          gap: 0.25rem;
-          cursor: pointer;
-          /* background-color: inherit; */
-          /* padding: var(--i-padding-2xs) var(--i-padding-lg); */
-          padding: var(--i-padding-2xs) var(--i-padding-sm);
-          min-width: 0;
-          user-select: none;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-
-          /* frozen header cells: ensure background + top z-index */
-          &.i-grid-header-cell--frozen {
-            z-index: 15;
-            /* background: var(--i-grid-header-bg); */
-          }
-
-          &.i-grid-selection-cell--header {
-            z-index: 40; /* top-most: header checkbox */
-            .i-grid-header-cell__content {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              input[type='checkbox'] {
-                width: 14px;
-                height: 14px;
-              }
-            }
-          }
-
-          /* Tree header cell (toggler + checkbox column) */
-          &.i-grid-tree-cell--header {
-            flex: 0 0 auto;
-            justify-content: center;
-            z-index: 35; /* between selection (40) and number (25) */
-            padding-right: 0.125rem;
-            padding-left: 0.125rem;
-            width: 40px;
-            .i-grid-header-cell__resize-handle {
-              display: none;
-            }
-            .i-grid-header-cell__content {
-              display: flex;
-              justify-content: end;
-              align-items: center;
-              padding-right: 4px;
-            }
-          }
-
-          &.i-grid-header-cell--resizable {
-            .i-grid-header-cell__resize-handle {
-              position: absolute;
-              top: 0;
-              right: -4px; /* align handle to the actual column edge */
-              z-index: 2;
-              cursor: col-resize;
-              width: 7px; /* clickable area */
-              height: 100%;
-
-              &::before {
-                position: absolute;
-                top: 6px;
-                bottom: 6px;
-                left: 3px;
-                --i-background-color: var(--i-border-color);
-                width: 1px;
-                content: '';
-              }
-
-              &:hover {
-                background-color: rgba(0, 0, 0, 0.05);
-
-                &::before {
-                  background-color: rgba(0, 0, 0, 0.35);
-                }
-              }
-            }
-          }
-
-          &.i-grid-selection-cell {
-            flex: 0 0 auto;
-            justify-content: center;
-            padding-right: 0.125rem;
-            padding-left: 0.125rem;
-            width: 32px;
-            .i-grid-header-cell__resize-handle {
-              display: none;
-            }
-          }
-
-          &.i-grid-number-cell {
-            flex: 0 0 auto;
-            z-index: 25; /* above frozen headers (15), below selection (40) */
-            padding-right: var(--i-padding-lg);
-            padding-left: var(--i-padding-sm);
-          }
-
-          &.i-grid-expand-cell {
-            .i-grid-header-cell__content {
-              overflow: unset;
-            }
-          }
-
-          .i-grid-header-cell__content {
-            display: block;
-            flex: 1 1 auto;
-            min-width: 0;
-            max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            /* &:has(input[type='checkbox']) {
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            padding-right: 2px;
-          } */
-          }
-
-          .i-grid-header-cell__icon {
-            display: inline-flex;
-            flex: 0 0 auto;
-            align-items: center;
-          }
-
-          &:hover {
-            --i-background-color: var(--i-grid-header-bg-hover);
-          }
-        }
-
-        /* Auto-generated header cells: min width 140px */
-        .i-grid-header-cell--auto {
-          min-width: 140px;
-        }
-      }
+      overflow: auto;
     }
 
-    /* sticky header inside viewport when enabled */
-    &.i-grid--sticky-header {
-      .i-grid-viewport {
-        i-grid-header-row {
-          position: sticky;
-          top: var(--i-grid-sticky-top, 0);
-          z-index: 30;
-          --i-background-color: var(--i-grid-header-bg);
-        }
-      }
-    }
-
-    /* --------------------------------------------------
-   * BODY ROWS
-   * -------------------------------------------------- */
-    i-grid-row {
-      /* display: flex; */
+    /* =========================================================
+     * HEADER
+     * ========================================================= */
+    i-grid-header-row {
+      --i-background-color: var(--i-grid-header-bg);
       display: inline-flex;
-      position: relative;
-      z-index: 1; /* above viewport background, below header */
-      /* width: 100%; */
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: var(--i-border);
       min-width: 100%;
+      font-weight: 600;
 
-      i-grid-cell {
-        display: flex;
+      i-grid-header-cell {
+        display: inline-flex;
         position: relative;
-        flex: 1 1 0; /* actual basis overridden by inline flex style */
+        flex: 1 1 0;
+        justify-content: space-between;
         align-items: center;
-        gap: var(--i-spacing-5xs);
-        z-index: 1;
-        border-bottom: var(--i-border-dotted);
+        gap: 0.25rem;
 
-        /* IMPORTANT: no background here, so row hover color is visible */
-        --i-background-color: transparent;
+        /* default: clickable header (sorting) */
+        cursor: pointer;
+
         padding: var(--i-padding-2xs) var(--i-padding-sm);
-
         min-width: 0;
-        overflow: hidden;
+
+        user-select: none;
         text-overflow: ellipsis;
         white-space: nowrap;
 
-        &.i-grid-selection-cell {
-          flex: 0 0 auto;
-          justify-content: center;
-          --i-background-color: var(--i-grid-row-bg);
-          padding-right: 0.125rem;
-          padding-left: 0.125rem;
-          width: 28px;
-
-          input[type='checkbox'],
-          input[type='radio'] {
-            margin: 0;
-            width: 14px;
-            height: 14px;
-          }
+        /* ---- state classes (used by TS) ---- */
+        &.i-grid-header-cell--sortable {
+          cursor: pointer;
         }
 
-        &.i-grid-selection-cell--body {
-          z-index: 20; /* under header, above other body cells if needed */
+        &.i-grid-header-cell--sorted,
+        &.i-grid-header-cell--sorted-asc,
+        &.i-grid-header-cell--sorted-desc {
+          /* keep minimal; you can style later */
         }
 
-        /* Tree body cell (toggler + checkbox column) */
-        &.i-grid-tree-cell {
-          flex: 0 0 auto; /* it remains non-flexing as a column */
-
-          z-index: 19;
-          --i-background-color: var(--i-grid-row-bg);
-          padding-right: 0.125rem;
-          padding-left: 0.125rem;
-          width: auto; /* allow natural expansion */
-
-          /* REMOVE fixed width */
-          /* width: 40px; */
-
-          /* ADD shrink/grow-friendly behavior */
-          min-width: max-content; /* expand to fit toggler + checkbox + indent */
+        /* ---- frozen header cell ---- */
+        &.i-grid-header-cell--frozen {
+          z-index: 15;
         }
 
-        &.i-grid-number-cell {
-          flex: 0 0 auto;
-          justify-content: flex-end;
-          z-index: 18; /* above normal cells, below selection cell */
-          --i-background-color: var(--i-grid-row-bg);
-          padding-right: var(--i-padding-lg);
-          padding-left: var(--i-padding-sm);
-        }
-
-        /* Auto-generated body cells: min width 140px */
-        &.i-grid-cell--auto {
+        /* ---- auto columns ---- */
+        &.i-grid-header-cell--auto {
           min-width: 140px;
         }
 
-        /* frozen data cells: only box-shadow, no solid background
-       so hover color from row still shows through */
-        &.i-grid-cell--frozen {
-          --i-background-color: #ffffff;
-          z-index: 15;
-          box-shadow: 1px 0 2px rgba(var(--i-color-gray-300-rgb), 0.3);
-        }
-
-        .i-grid-cell__content {
+        /* ---- header content / icon ---- */
+        .i-grid-header-cell__content {
           display: block;
           flex: 1 1 auto;
           min-width: 0;
@@ -289,107 +95,176 @@
           white-space: nowrap;
         }
 
-        /* legacy tree text wrapper (still safe to keep) */
-        .i-grid-cell__content--tree {
+        .i-grid-header-cell__icon {
+          display: inline-flex;
+          flex: 0 0 auto;
+          align-items: center;
+        }
+
+        /* ---- resize handle ---- */
+        &.i-grid-header-cell--resizable {
+          .i-grid-header-cell__resize-handle {
+            position: absolute;
+            top: 0;
+            right: -4px;
+            z-index: 2;
+            cursor: col-resize;
+
+            width: 7px;
+            height: 100%;
+
+            &::before {
+              position: absolute;
+              top: 6px;
+              bottom: 6px;
+              left: 3px;
+
+              width: 1px;
+              content: '';
+              --i-background-color: var(--i-border-color);
+            }
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.05);
+
+              &::before {
+                background-color: rgba(0, 0, 0, 0.35);
+              }
+            }
+          }
+        }
+
+        /* ---- selection header cell (flat-mode) ---- */
+        &.i-grid-selection-cell {
+          flex: 0 0 auto;
+          justify-content: center;
+          padding-right: 0.125rem;
+          padding-left: 0.125rem;
+          width: 28px;
+
+          .i-grid-header-cell__resize-handle {
+            display: none;
+          }
+        }
+
+        &.i-grid-selection-cell--header {
+          z-index: 40;
+
+          .i-grid-header-cell__content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            input[type='checkbox'] {
+              width: 14px;
+              height: 14px;
+            }
+          }
+        }
+
+        /* ---- number header cell ---- */
+        &.i-grid-number-cell {
+          flex: 0 0 auto;
+          z-index: 25;
+          padding-right: var(--i-padding-lg);
+          padding-left: var(--i-padding-sm);
+        }
+
+        /* ---- expand header cell (flat-mode detail rows) ---- */
+        &.i-grid-expand-cell {
+          z-index: 40;
+          padding: var(--i-padding-2xs) var(--i-padding-xs);
+          .i-grid-header-cell__content {
+            overflow: visible;
+          }
+        }
+
+        &.i-grid-expand-cell--header {
+          /* present in template */
+        }
+
+        /* ---- tree host header UI (tree mode) ---- */
+        .i-grid-tree-head {
           display: inline-flex;
           align-items: center;
-          gap: var(--i-spacing-5xs);
-          padding-left: 4px;
           min-width: 0;
+
+          .i-grid-tree-expand-all {
+            margin-right: 8px;
+          }
+
+          .i-grid-tree-header-checkbox {
+            margin-right: 8px;
+            width: 14px;
+            height: 14px;
+          }
+
+          .i-grid-tree-head__title {
+            display: inline-block;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
         }
 
-        /* NEW tree cell content wrapper (used in updated template) */
-        .i-grid-tree-cell__content {
-          display: inline-flex;
-          align-items: center;
-          gap: var(--i-spacing-3xs);
-          padding-left: 4px;
-          min-width: 0;
-        }
-
-        .i-grid-tree-toggle {
-          display: inline-flex;
-          cursor: pointer;
-          margin-right: 0px;
-        }
-
-        .i-grid-tree-spacer {
-          display: inline-flex;
-          flex: 0 0 16px;
-          cursor: pointer;
-          padding-left: 6px;
-          width: 16px;
-        }
-
-        .i-grid-tree-checkbox {
-          flex: 0 0 16px;
-          width: 24px;
-        }
-
-        .i-grid-tree-text {
-          display: inline-block;
-          min-width: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        /* Ensure children can shrink, so ellipsis works even with nested elements */
-        > * {
-          min-width: 0;
+        &:hover {
+          --i-background-color: var(--i-grid-header-bg-hover);
+          .i-grid-header-cell__resize-handle {
+            --i-background-color: var(--i-color-gray-100);
+          }
         }
       }
+    }
+
+    /* =========================================================
+     * BODY ROWS
+     * ========================================================= */
+    i-grid-row {
+      display: inline-flex;
+      position: relative;
+      z-index: 1;
+      min-width: 100%;
 
       &.i-grid-selection-row {
         cursor: pointer;
       }
 
+      &::before {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        content: '';
+        --i-background-color: transparent;
+        border-bottom: var(--i-border-dotted);
+      }
+
       &:nth-of-type(odd) {
         --i-background-color: var(--i-grid-row-bg-odd);
-
-        .i-grid-cell--frozen {
-          --i-background-color: var(--i-grid-row-bg-odd);
-        }
-        .i-grid-selection-cell {
-          --i-background-color: var(--i-grid-row-bg-odd);
-        }
-        .i-grid-number-cell {
-          --i-background-color: var(--i-grid-row-bg-odd);
-        }
-        .i-grid-tree-cell {
-          --i-background-color: var(--i-grid-row-bg-odd);
-        }
 
         &::before {
           --i-background-color: var(--i-grid-row-bg-odd);
         }
-      }
 
-      &::before {
-        position: absolute;
-        z-index: 0; /* stays behind all cells */
-        inset: 0;
-        --i-background-color: transparent;
-        content: '';
+        .i-grid-cell--frozen,
+        .i-grid-selection-cell,
+        .i-grid-number-cell,
+        .i-grid-expand-cell {
+          --i-background-color: var(--i-grid-row-bg-odd);
+        }
       }
 
       &:hover {
         --i-background-color: var(--i-grid-row-bg-hover);
 
-        .i-grid-cell--frozen {
-          --i-background-color: var(--i-grid-row-bg-hover);
-        }
-        .i-grid-selection-cell {
-          --i-background-color: var(--i-grid-row-bg-hover);
-        }
-        .i-grid-number-cell {
-          --i-background-color: var(--i-grid-row-bg-hover);
-        }
-        .i-grid-tree-cell {
+        &::before {
           --i-background-color: var(--i-grid-row-bg-hover);
         }
 
-        &::before {
+        .i-grid-cell--frozen,
+        .i-grid-selection-cell,
+        .i-grid-number-cell,
+        .i-grid-expand-cell {
           --i-background-color: var(--i-grid-row-bg-hover);
         }
       }
@@ -401,18 +276,172 @@
       }
     }
 
+    i-grid-cell {
+      display: flex;
+      position: relative;
+      flex: 1 1 0;
+      align-items: center;
+      gap: var(--i-spacing-5xs);
+
+      z-index: 1;
+      /* border-bottom: var(--i-border-dotted); */
+
+      padding: var(--i-padding-2xs) var(--i-padding-sm);
+
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      --i-background-color: transparent;
+
+      &.i-grid-cell--auto {
+        min-width: 140px;
+      }
+
+      /* frozen cells */
+      &.i-grid-cell--frozen {
+        z-index: 15;
+        --i-background-color: #ffffff;
+        box-shadow: 1px 0 2px rgba(var(--i-color-gray-300-rgb), 0.3);
+        border-bottom: var(--i-border-dotted);
+      }
+
+      .i-grid-cell__content {
+        display: block;
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* ---- selection column (flat-mode) ---- */
+      &.i-grid-selection-cell {
+        flex: 0 0 auto;
+        justify-content: center;
+        border-bottom: var(--i-border-dotted);
+        padding-right: 0.125rem;
+        padding-left: 0.125rem;
+        width: 28px;
+        --i-background-color: var(--i-grid-row-bg);
+
+        input[type='checkbox'],
+        input[type='radio'] {
+          margin: 0;
+          width: 14px;
+          height: 14px;
+        }
+      }
+
+      &.i-grid-selection-cell--body {
+        z-index: 20;
+      }
+
+      /* ---- number column ---- */
+      &.i-grid-number-cell {
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        z-index: 18;
+
+        --i-background-color: var(--i-grid-row-bg);
+        border-bottom: var(--i-border-dotted);
+        padding-right: var(--i-padding-lg);
+        padding-left: var(--i-padding-sm);
+      }
+
+      /* ---- expand column (flat-mode detail rows) ---- */
+      &.i-grid-expand-cell {
+        flex: 0 0 auto;
+        justify-content: center;
+        z-index: 20;
+        width: 32px;
+
+        --i-background-color: var(--i-grid-row-bg);
+        border-bottom: var(--i-border-dotted);
+        padding-right: 0.125rem;
+        padding-left: 0.125rem;
+      }
+
+      &.i-grid-expand-cell--body {
+        /* present in template */
+      }
+
+      .i-grid-expand-cell__content {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .i-grid-expand-toggle {
+        /* present in template */
+      }
+
+      /* ---- tree inline UI (tree host column) ---- */
+      .i-grid-tree-inline {
+        display: inline-flex;
+        align-items: center;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .i-grid-tree-indent {
+        display: inline-block;
+        flex: 0 0 auto;
+      }
+
+      .i-grid-tree-toggle {
+        display: inline-flex;
+        flex: 0 0 auto;
+        cursor: pointer;
+        margin-right: 8px;
+      }
+
+      .i-grid-tree-spacer {
+        display: inline-flex;
+        flex: 0 0 16px;
+        margin-right: 8px;
+        width: 16px;
+      }
+
+      .i-grid-tree-checkbox,
+      .i-grid-tree-radio {
+        flex: 0 0 auto;
+        margin: 0;
+        margin-right: 8px;
+        width: 14px;
+        height: 14px;
+      }
+
+      .i-grid-tree-text {
+        display: inline-block;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      > * {
+        min-width: 0;
+      }
+    }
+
+    /* =========================================================
+     * DETAIL ROW
+     * ========================================================= */
     i-grid-expandable-row {
       display: flex;
       border-bottom: var(--i-border-dotted);
       padding: var(--i-padding-md) var(--i-padding-md);
     }
 
-    /* --------------------------------------------------
-   * FOOTER / PAGINATOR
-   * -------------------------------------------------- */
+    /* =========================================================
+     * FOOTER / PAGINATOR
+     * ========================================================= */
     .i-grid-footer {
-      display: flex;
-      justify-content: flex-end;
+      /* display: flex; */
+      /* justify-content: flex-end; */
       border-top: 1px solid #dee2e6;
       padding: 0.5rem 0.75rem;
 
