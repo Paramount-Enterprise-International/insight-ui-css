@@ -122,6 +122,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          --i-background-color: transparent;
         }
 
         .i-option-check {
@@ -131,6 +132,7 @@
           align-items: center;
           margin-left: 8px;
           color: var(--i-color-primary);
+          --i-background-color: transparent;
         }
 
         &:hover {

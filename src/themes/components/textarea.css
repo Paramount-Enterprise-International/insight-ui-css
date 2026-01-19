@@ -55,9 +55,15 @@
     }
   }
 
-  i-fc-textarea {
+  i-fc-textarea,
+  .i-fc-textarea {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--i-padding-2xs);
+    label:first-child,
     .i-fc-textarea__label {
       font-size: var(--i-text-sm) !important;
+      text-align: left;
       .i-fc-textarea__required {
         color: var(--i-color-danger);
       }
@@ -67,10 +73,11 @@
       height: 16px;
       color: var(--i-color-danger);
       font-size: var(--i-text-sm) !important;
+      text-align: left;
     }
 
     &:not(:has(.i-fc-textarea__error)) {
-      padding-bottom: var(--i-padding-lg);
+      padding-bottom: var(--i-padding-xl);
     }
   }
 }

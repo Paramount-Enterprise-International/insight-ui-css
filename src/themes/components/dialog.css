@@ -31,6 +31,10 @@
       max-height: 90vh;
       overflow: auto;
       pointer-events: auto;
+      > * {
+        display: flex;
+        width: 100%;
+      }
     }
 
     i-dialog {
@@ -80,6 +84,9 @@
 
       .i-dialog-actions {
         --i-background-color: var(--i-color-gray-100);
+        display: flex;
+        justify-content: end;
+        align-items: center;
         gap: var(--i-spacing-3xs);
         border-top: var(--i-border);
         padding: var(--i-spacing-xs) var(--i-spacing-md);
