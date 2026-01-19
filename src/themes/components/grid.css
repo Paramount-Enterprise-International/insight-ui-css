@@ -1,6 +1,6 @@
 /*
  * IGrid
- * Version: 1.23.2 (cleaned)
+ * Version: 1.24.0 (header group layout)
  */
 @layer components {
   .i-grid {
@@ -40,7 +40,13 @@
       display: inline-flex;
       position: sticky;
       top: 0;
+
+      /* NEW: allow group wrapper (2 rows) to stretch full header height */
+      align-items: stretch;
       z-index: 30;
+
+      /* NEW: make header sizing predictable */
+      box-sizing: border-box;
       border-bottom: var(--i-border);
       min-width: 100%;
       font-weight: 600;
@@ -56,10 +62,19 @@
         /* default: clickable header (sorting) */
         cursor: pointer;
 
+        /* NEW: predictable sizing */
+        box-sizing: border-box;
+
+        /* box-shadow:
+          inset -1px -1px 2px rgba(255, 255, 255, 0.5),
+          inset 1px 1px 2px rgba(0, 0, 0, 0.01); */
+
         padding: var(--i-padding-2xs) var(--i-padding-sm);
         min-width: 0;
 
         user-select: none;
+
+        /* text-align: center; */
         text-overflow: ellipsis;
         white-space: nowrap;
 
@@ -112,23 +127,25 @@
 
             width: 7px;
             height: 100%;
+            --i-background-color: none;
 
             &::before {
               position: absolute;
-              top: 6px;
-              bottom: 6px;
+              top: 0px;
+              bottom: 0px;
               left: 3px;
 
               width: 1px;
               content: '';
-              --i-background-color: var(--i-border-color);
+              /* --i-background-color: var(--i-border-color); */
+              --i-background-color: var(--i-color-gray-200);
             }
 
             &:hover {
-              background-color: rgba(0, 0, 0, 0.05);
+              background-color: var(--i-color-gray-300);
 
               &::before {
-                background-color: rgba(0, 0, 0, 0.35);
+                /* background-color: var(--i-color-gray-400); */
               }
             }
           }
@@ -138,6 +155,7 @@
         &.i-grid-selection-cell {
           flex: 0 0 auto;
           justify-content: center;
+          border-right: 1px solid var(--i-color-gray-200);
           padding-right: 0.125rem;
           padding-left: 0.125rem;
           width: 28px;
@@ -173,6 +191,7 @@
         /* ---- expand header cell (flat-mode detail rows) ---- */
         &.i-grid-expand-cell {
           z-index: 40;
+          border-right: 1px solid var(--i-color-gray-200);
           padding: var(--i-padding-2xs) var(--i-padding-xs);
           .i-grid-header-cell__content {
             overflow: visible;
@@ -211,9 +230,129 @@
         &:hover {
           --i-background-color: var(--i-grid-header-bg-hover);
           .i-grid-header-cell__resize-handle {
-            --i-background-color: var(--i-color-gray-100);
+            --i-background-color: none;
           }
         }
+      }
+
+      /* =========================================================
+       * NEW: HEADER GROUP LAYOUT (no resize handle for group for now)
+       *
+       * Expected DOM:
+       * <i-grid-header-cell-group>
+       *   <i-grid-header-cell>Group Title</i-grid-header-cell>
+       *   <i-grid-header-cell-group-columns>
+       *     <i-grid-header-cell>Col 2</i-grid-header-cell>
+       *     <i-grid-header-cell>Col 3</i-grid-header-cell>
+       *   </i-grid-header-cell-group-columns>
+       * </i-grid-header-cell-group>
+       * ========================================================= */
+
+      i-grid-header-cell-group {
+        display: inline-flex;
+        position: relative;
+
+        /* FIX:
+         * Don’t let the wrapper be a “flex: 1” column.
+         * It must size to the sum of its child columns, otherwise it shrinks
+         * (e.g. 410) while children sum is 420 -> causes overlap.
+         */
+        flex: 0 0 auto;
+
+        /* stack: title row then columns row */
+        flex-direction: column;
+        align-items: stretch;
+
+        /* NEW: predictable sizing */
+        box-sizing: border-box;
+        width: max-content;
+
+        min-width: 0;
+
+        /* matches header row background */
+        --i-background-color: var(--i-grid-header-bg);
+
+        /* prevent visual overlap into next header cell */
+        /* overflow: hidden; */
+        border-right: 1px solid var(--i-color-gray-200);
+
+        /* IMPORTANT:
+         * group container should not steal click/hover styles from inner cells,
+         * but we still want hover feedback when hovering the group area.
+         */
+        /* &:hover {
+          --i-background-color: var(--i-grid-header-bg-hover);
+        } */
+
+        /* group title cell (top row) */
+        > i-grid-header-cell:first-child {
+          /* make sure the title doesn’t affect width math */
+          flex: 0 0 auto;
+
+          /* center like a group label */
+          justify-content: center;
+
+          /* not sortable for group title by default */
+          cursor: default;
+          /* NEW: predictable sizing */
+          box-sizing: border-box;
+
+          /* keep it visually separated from the 2nd row */
+          border-bottom: 1px solid var(--i-color-gray-200);
+
+          /* keep same padding but you can tweak later */
+          padding: var(--i-padding-2xs) var(--i-padding-sm);
+
+          /* title should be exactly group width */
+          width: 100%;
+          text-align: center;
+
+          /* avoid resize handle UI for group title cell */
+          .i-grid-header-cell__resize-handle {
+            display: none;
+          }
+
+          /* if TS accidentally marks it resizable, still hide */
+          &.i-grid-header-cell--resizable {
+            .i-grid-header-cell__resize-handle {
+              display: none;
+            }
+          }
+        }
+
+        i-grid-header-cell-group-columns {
+          display: inline-flex;
+          flex: 0 0 auto;
+          align-items: stretch;
+
+          /* NEW: predictable sizing */
+          box-sizing: border-box;
+
+          /* FIX: group width should be sum of children */
+          width: max-content;
+
+          min-width: 0;
+
+          /* don’t paint over next column */
+          /* overflow: hidden; */
+
+          /* ensure the 2nd row fills remaining height if any */
+          > i-grid-header-cell {
+            /* FIX: don’t let inner cells shrink (260 + 160 stays 420) */
+            flex-shrink: 0;
+            align-items: center;
+
+            /* NEW: predictable sizing */
+            box-sizing: border-box;
+          }
+        }
+
+        /* hover behavior: when hovering group wrapper, still show inner hover feel */
+        /* &:hover {
+          i-grid-header-cell {
+            --i-background-color: var(--i-grid-header-bg-hover);
+          }
+        } */
       }
     }
 
