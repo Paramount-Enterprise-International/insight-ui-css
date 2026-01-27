@@ -9,7 +9,8 @@
 
 @layer components {
   ih-root,
-  app-root {
+  app-root,
+  ir-standalone {
     display: flex;
     flex-direction: row;
     margin: 0px;
