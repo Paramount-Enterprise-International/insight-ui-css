@@ -12,6 +12,8 @@
 @import './components/icon.css';
 @import './components/input.css';
 @import './components/loading.css';
+@import './components/pill.css';
 @import './components/section.css';
 @import './components/select.css';
 @import './components/textarea.css';
+@import './components/toggle.css';
