@@ -1,86 +1,84 @@
 @layer components {
-  ih-root {
-    ih-sidebar {
-      ih-menu {
-        &.hidden {
-          display: none;
+  ih-sidebar {
+    ih-menu {
+      &.hidden {
+        display: none;
+      }
+
+      li {
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+
+        & > small {
+          padding: 0 var(--i-spacing-xs) var(--i-spacing-4xs);
+          color: var(--i-color-gray-400);
+          font-size: var(--i-text-sm);
+          font-family: var(--i-font-heading);
         }
 
-        li {
+        & > div,
+        a {
           display: flex;
-          flex-direction: column;
-          padding: 0px;
+          flex-direction: row;
+          align-items: center;
+          gap: var(--i-spacing-3xs);
+          cursor: pointer;
+          margin: var(--i-spacing-5xs) 0px;
+          border-radius: var(--i-radius-md);
+          padding: var(--i-spacing-3xs) var(--i-spacing-xs);
+          text-decoration: none;
 
-          & > small {
-            padding: 0 var(--i-spacing-xs) var(--i-spacing-4xs);
-            color: var(--i-color-gray-400);
+          span:not(.highlight-search) {
+            display: inline-block;
+            width: var(--i-spacing-sm);
+          }
+
+          i,
+          h6 {
+            color: var(--i-color-gray-600);
+          }
+
+          h6 {
+            flex: 1 1 100%;
             font-size: var(--i-text-sm);
             font-family: var(--i-font-heading);
           }
 
-          & > div,
-          a {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--i-spacing-3xs);
-            cursor: pointer;
-            margin: var(--i-spacing-5xs) 0px;
-            border-radius: var(--i-radius-md);
-            padding: var(--i-spacing-3xs) var(--i-spacing-xs);
-            text-decoration: none;
+          &.is-selected {
+            background-color: var(--i-color-blue-50);
+            color: var(--i-color-blue-900);
+          }
 
-            span:not(.highlight-search) {
-              display: inline-block;
-              width: var(--i-spacing-sm);
-            }
+          &.is-selected h6 {
+            font-weight: 600;
+          }
+
+          &:hover {
+            background-color: var(--i-color-gray-100);
 
             i,
             h6 {
-              color: var(--i-color-gray-600);
-            }
-
-            h6 {
-              flex: 1 1 100%;
-              font-size: var(--i-text-sm);
-              font-family: var(--i-font-heading);
-            }
-
-            &.is-selected {
-              background-color: var(--i-color-blue-50);
-              color: var(--i-color-blue-900);
-            }
-
-            &.is-selected h6 {
-              font-weight: 600;
-            }
-
-            &:hover {
-              background-color: var(--i-color-gray-100);
-
-              i,
-              h6 {
-                color: var(--i-color-gray-800);
-              }
+              color: var(--i-color-gray-800);
             }
           }
+        }
 
-          > ul {
+        > ul {
+          display: flex;
+          flex-direction: column;
+          margin: 0px;
+          padding: 0px;
+          list-style: none;
+
+          &.expanded {
             display: flex;
-            flex-direction: column;
-            margin: 0px;
-            padding: 0px;
-            list-style: none;
+            border-radius: var(--i-radius-md);
+            background-color: var(--i-color-gray-100);
+          }
 
-            &.expanded {
-              display: flex;
-              border-radius: var(--i-radius-md);
-              background-color: var(--i-color-gray-100);
-            }
-
-            &.collapsed {
-              display: none;
-            }
+          &.collapsed {
+            display: none;
           }
         }
       }

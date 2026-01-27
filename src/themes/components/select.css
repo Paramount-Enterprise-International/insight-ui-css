@@ -46,6 +46,7 @@
       width: 100%;
       min-width: var(--i-select-options-min-width);
       max-height: var(--i-select-options-max-height);
+      font-size: var(--i-text-md);
 
       /* ---- Position modifiers ---- */
 
