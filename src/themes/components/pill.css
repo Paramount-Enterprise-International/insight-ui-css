@@ -128,7 +128,7 @@
 
     &[size='2xs'],
     &.i-pill-2xs {
-      --i-pill-gap: 0 var(--i-gap-2xs);
+      --i-pill-gap: 0 var(--i-gap-xs);
       --i-pill-padding: 0 var(--i-padding-2xs);
       --i-pill-height: var(--i-size-2xs);
       --i-pill-min-width: var(--i-size-2xs);
@@ -140,7 +140,7 @@
 
     &[size='xs'],
     &.i-pill-xs {
-      --i-pill-gap: 0 var(--i-gap-xs);
+      --i-pill-gap: 0 var(--i-gap-sm);
       --i-pill-padding: 0 var(--i-padding-xs);
       --i-pill-height: var(--i-size-xs);
       --i-pill-min-width: var(--i-size-xs);
@@ -152,7 +152,7 @@
 
     &[size='sm'],
     &.i-pill-sm {
-      --i-pill-gap: 0 var(--i-gap-sm);
+      --i-pill-gap: 0 var(--i-gap-md);
       --i-pill-padding: 0 var(--i-padding-sm);
       --i-pill-height: var(--i-size-sm);
       --i-pill-min-width: var(--i-size-sm);
@@ -164,7 +164,7 @@
 
     &[size='md'],
     &.i-pill-md {
-      --i-pill-gap: 0 var(--i-gap-md);
+      --i-pill-gap: 0 var(--i-gap-lg);
       --i-pill-padding: 0 var(--i-padding-md);
       --i-pill-height: var(--i-size-md);
       --i-pill-min-width: var(--i-size-md);
@@ -176,7 +176,7 @@
 
     &[size='lg'],
     &.i-pill-lg {
-      --i-pill-gap: 0 var(--i-gap-lg);
+      --i-pill-gap: 0 var(--i-gap-xl);
       --i-pill-padding: 0 var(--i-padding-lg);
       --i-pill-height: var(--i-size-lg);
       --i-pill-min-width: var(--i-size-lg);
