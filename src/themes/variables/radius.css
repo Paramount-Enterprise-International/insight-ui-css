@@ -1,6 +1,7 @@
 @layer themes {
   :root {
     --i-radius-none: none;
+    --i-radius-3xs: 4px;
     --i-radius-2xs: 5px;
     --i-radius-xs: 6px;
     --i-radius-sm: 7px;

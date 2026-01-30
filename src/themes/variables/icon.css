@@ -1,6 +1,8 @@
 @layer themes {
   :root {
     --fa-width: auto;
+    --i-icon-3xs: 6px;
+    --i-icon-2xs: 8px;
     --i-icon-xs: 10px;
     --i-icon-sm: 12px;
     --i-icon-md: 14px;
