@@ -70,6 +70,13 @@
         max-height: 100%;
         overflow: hidden auto;
 
+        /* &:has(i-input:last-child),
+        &:has(i-fc-input:last-child),
+        &:has(i-textarea:last-child),
+        &:has(i-fc-textarea:last-child) {
+          padding-bottom: 0px;
+        } */
+
         &::-webkit-scrollbar {
           --i-background-color: rgba(255, 255, 255, 0.1);
           width: 6px;
@@ -91,6 +98,10 @@
         border-top: var(--i-border);
         padding: var(--i-spacing-xs) var(--i-spacing-md);
         width: 100%;
+        &:last-child {
+          border-bottom-right-radius: var(--i-radius-md);
+          border-bottom-left-radius: var(--i-radius-md);
+        }
       }
     }
   }

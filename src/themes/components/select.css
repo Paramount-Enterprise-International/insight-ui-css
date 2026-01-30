@@ -1,6 +1,10 @@
 /*
  * ISelect
- * Version: 2.1.0
+ * Version: 2.1.1
+ *
+ * Fix:
+ * - When options panel is portaled to body, neutralize absolute position modifiers
+ *   (prevents "top then bottom" flicker/jump)
  */
 @layer components {
   i-select {
@@ -25,6 +29,7 @@
       border-radius: var(--i-radius-md);
       width: 30px;
       height: 30px;
+
       i {
         color: var(--i-text-subtle-color);
       }
@@ -35,110 +40,120 @@
         }
       }
     }
+  }
 
-    .i-options {
-      position: absolute;
-      z-index: 1000;
-      border: var(--i-border);
+  .i-options,
+  i-options {
+    position: absolute;
+    z-index: 1000;
+    border: var(--i-border);
+    border-radius: var(--i-radius-md);
+    background: var(--i-color-white);
+    padding: var(--i-spacing-5xs);
+    width: 100%;
+    min-width: var(--i-select-options-min-width);
+    max-height: var(--i-select-options-max-height);
+    font-size: var(--i-text-md);
+
+    /* ---- Position modifiers ---- */
+
+    /* Bottom-left (default) */
+    &.i-options--bottom,
+    &.i-options--bottom-left {
+      top: 40px;
+      left: 0;
+      margin-top: 4px;
+    }
+
+    /* Bottom-right */
+    &.i-options--bottom-right {
+      top: 40px;
+      right: 0;
+      margin-top: 4px;
+    }
+
+    /* Top-left */
+    &.i-options--top,
+    &.i-options--top-left {
+      bottom: 40px;
+      left: 0;
+      margin-bottom: 4px;
+    }
+
+    /* Top-right */
+    &.i-options--top-right {
+      right: 0;
+      bottom: 40px;
+      margin-bottom: 4px;
+    }
+
+    /* Side positions */
+    &.i-options--right {
+      top: 0;
+      left: 100%;
+      margin-left: 4px;
+    }
+
+    &.i-options--left {
+      top: 0;
+      right: 100%;
+      margin-right: 4px;
+    }
+
+    /* ✅ NEW: when portaled, ignore all absolute modifier positioning */
+    &.i-options--portaled {
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      margin: 0;
+    }
+
+    .i-option {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
       border-radius: var(--i-radius-md);
-      background: var(--i-color-white);
-      padding: var(--i-spacing-5xs);
+      padding: var(--i-spacing-4xs) var(--i-spacing-sm);
       width: 100%;
-      min-width: var(--i-select-options-min-width);
-      max-height: var(--i-select-options-max-height);
-      font-size: var(--i-text-md);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
-      /* ---- Position modifiers ---- */
-
-      /* Bottom-left (default) */
-      &.i-options--bottom,
-      &.i-options--bottom-left {
-        top: 40px;
-        left: 0;
-        margin-top: 4px;
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
 
-      /* Bottom-right */
-      &.i-options--bottom-right {
-        top: 40px;
-        right: 0;
-        margin-top: 4px;
+      &.active {
+        background-color: var(--i-color-blue-50);
       }
 
-      /* Top-left */
-      &.i-options--top,
-      &.i-options--top-left {
-        bottom: 40px;
-        left: 0;
-        margin-bottom: 4px;
+      &.selected {
+        font-weight: 500;
       }
 
-      /* Top-right */
-      &.i-options--top-right {
-        right: 0;
-        bottom: 40px;
-        margin-bottom: 4px;
-      }
-
-      /* Side positions */
-      &.i-options--right {
-        top: 0;
-        left: 100%;
-        margin-left: 4px;
-      }
-
-      &.i-options--left {
-        top: 0;
-        right: 100%;
-        margin-right: 4px;
-      }
-
-      .i-option {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        border-radius: var(--i-radius-md);
-        padding: var(--i-spacing-4xs) var(--i-spacing-sm);
-        width: 100%;
+      .i-option-label {
+        flex: 1 1 auto;
+        min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        --i-background-color: transparent;
+      }
 
-        &.disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
+      .i-option-check {
+        display: inline-flex;
+        flex: 0 0 auto;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
+        color: var(--i-color-primary);
+        --i-background-color: transparent;
+      }
 
-        &.active {
-          background-color: var(--i-color-blue-50);
-        }
-
-        &.selected {
-          font-weight: 500;
-        }
-
-        .i-option-label {
-          flex: 1 1 auto;
-          min-width: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          --i-background-color: transparent;
-        }
-
-        .i-option-check {
-          display: inline-flex;
-          flex: 0 0 auto;
-          justify-content: center;
-          align-items: center;
-          margin-left: 8px;
-          color: var(--i-color-primary);
-          --i-background-color: transparent;
-        }
-
-        &:hover {
-          background-color: var(--i-color-blue-50);
-        }
+      &:hover {
+        background-color: var(--i-color-blue-50);
       }
     }
   }
@@ -147,8 +162,10 @@
     display: flex;
     flex-direction: column;
     padding-bottom: var(--i-padding-2xs);
+
     .i-fc-select__label {
       font-size: var(--i-text-sm) !important;
+
       .i-fc-select__required {
         color: var(--i-color-danger);
       }
