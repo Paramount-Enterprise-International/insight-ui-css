@@ -1,6 +1,7 @@
 /* font sizes */
 @layer themes {
   :root {
+    --i-text-3xs: 6px;
     --i-text-2xs: 8px;
     --i-text-xs: 10px;
     --i-text-sm: 12px;

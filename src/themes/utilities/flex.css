@@ -19,6 +19,7 @@
     /* --i-col-gap: var(--i-gap);
     --i-row-gap: var(--i-gap); */
 
+    --i-gap-3xs: 3px;
     --i-gap-2xs: 2px;
     --i-gap-xs: 4px;
     --i-gap-sm: 6px;

@@ -36,6 +36,16 @@
       cursor: not-allowed;
     }
 
+    &[size='3xs'],
+    &.i-btn-3xs {
+      --i-button-gap: 0 var(--i-gap-3xs);
+      --i-button-border-radius: var(--i-radius-2xs);
+      --i-button-padding: 0 var(--i-padding-3xs);
+      --i-button-height: var(--i-size-3xs);
+      --i-button-min-width: var(--i-size-3xs);
+      --i-button-font-size: var(--i-text-3xs);
+    }
+
     &[size='2xs'],
     &.i-btn-2xs {
       --i-button-gap: 0 var(--i-gap-2xs);
