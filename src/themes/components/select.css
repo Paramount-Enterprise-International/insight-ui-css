@@ -178,7 +178,12 @@
     }
 
     &:not(:has(.i-fc-select__error)) {
-      padding-bottom: var(--i-padding-xl);
+      padding-bottom: var(--i-padding-lg);
+    }
+
+    + i-button,
+    + .i-btn {
+      margin-bottom: var(--i-padding-lg);
     }
   }
 }

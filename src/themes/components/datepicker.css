@@ -177,5 +177,10 @@
     &:not(:has(.i-fc-datepicker__error)) {
       padding-bottom: var(--i-padding-lg);
     }
+
+    + i-button,
+    + .i-btn {
+      margin-bottom: var(--i-padding-lg);
+    }
   }
 }
