@@ -29,7 +29,7 @@
           padding: var(--i-spacing-3xs) var(--i-spacing-xs);
           text-decoration: none;
 
-          span:not(.highlight-search) {
+          > span:not(.highlight-search) {
             display: inline-block;
             width: var(--i-spacing-sm);
           }
