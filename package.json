@@ -1,24 +1,6 @@
 {
   "name": "@insight/css",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "watch": "vite build --watch --mode development",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{ts,html,scss,css}\""
-  },
-  "devDependencies": {
-    "prettier": "^3.7.4",
-    "prettier-plugin-css-order": "^2.1.2",
-    "typescript": "~5.9.3",
-    "vite": "^7.2.4"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
-    "highlight.js": "^11.11.1",
-    "tailwindcss": "^4.1.17"
-  }
+  "version": "1.4.0",
+  "main": "index.css",
+  "style": "index.css"
 }
