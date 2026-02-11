@@ -10,6 +10,7 @@
 @layer components {
   ih-root,
   app-root,
+  ir-root,
   ir-standalone {
     display: flex;
     flex-direction: row;

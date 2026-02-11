@@ -27,6 +27,9 @@
   .bg-white {
     --i-background-color: var(--i-color-white);
   }
+  .bg-primary {
+    --i-background-color: var(--i-color-blue-500);
+  }
 }
 
 /* AMBER */
