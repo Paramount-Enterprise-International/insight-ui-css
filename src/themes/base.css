@@ -50,37 +50,37 @@
   h1 {
     font-weight: var(--i-font-weight-bold);
     font-size: var(--i-text-4xl);
-    line-height: var(--i-heading-leading-1);
+    /* line-height: var(--i-heading-leading-1); */
   }
 
   h2 {
     font-weight: var(--i-font-weight-semi-bold);
     font-size: var(--i-text-3xl);
-    line-height: var(--i-heading-leading-2);
+    /* line-height: var(--i-heading-leading-2); */
   }
 
   h3 {
     font-weight: var(--i-font-weight-semi-bold);
     font-size: var(--i-text-2xl);
-    line-height: var(--i-heading-leading-3);
+    /* line-height: var(--i-heading-leading-3); */
   }
 
   h4 {
     font-weight: var(--i-font-weight-medium);
     font-size: var(--i-text-xl);
-    line-height: var(--i-heading-leading-4);
+    /* line-height: var(--i-heading-leading-4); */
   }
 
   h5 {
     font-weight: var(--i-font-weight-medium);
     font-size: var(--i-text-lg);
-    line-height: var(--i-heading-leading-5);
+    /* line-height: var(--i-heading-leading-5); */
   }
 
   h6 {
     font-weight: var(--i-font-weight-medium);
     font-size: var(--i-text-md);
-    line-height: var(--i-heading-leading-6);
+    /* line-height: var(--i-heading-leading-6); */
   }
 
   code,
