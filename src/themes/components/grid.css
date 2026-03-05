@@ -37,7 +37,7 @@
      * ========================================================= */
     i-grid-header-row {
       --i-background-color: var(--i-grid-header-bg);
-      display: inline-flex;
+      display: flex;
       position: sticky;
       top: 0;
 
@@ -48,6 +48,7 @@
       /* NEW: make header sizing predictable */
       box-sizing: border-box;
       border-bottom: var(--i-border);
+      width: 100%;
       min-width: 100%;
       font-weight: 600;
 
@@ -360,10 +361,15 @@
      * BODY ROWS
      * ========================================================= */
     i-grid-row {
-      display: inline-flex;
+      display: flex;
       position: relative;
       z-index: 1;
-      min-width: 100%;
+      width: 100%;
+      min-width: 0;
+
+      > * {
+        min-width: 0;
+      }
 
       &.i-grid-selection-row {
         cursor: pointer;
@@ -423,16 +429,17 @@
       gap: var(--i-spacing-5xs);
 
       z-index: 1;
-      /* border-bottom: var(--i-border-dotted); */
 
       padding: var(--i-padding-2xs) var(--i-padding-sm);
 
       min-width: 0;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
 
       --i-background-color: transparent;
+
+      > * {
+        min-width: 0;
+      }
 
       &.i-grid-cell--auto {
         min-width: 140px;
@@ -548,7 +555,7 @@
       .i-grid-tree-radio {
         flex: 0 0 auto;
         margin: 0;
-        margin-right: 8px;
+        /* margin-right: 8px; */
         width: 14px;
         height: 14px;
       }

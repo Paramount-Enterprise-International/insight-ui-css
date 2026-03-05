@@ -2,6 +2,7 @@
 @layer themes {
   :root {
     --i-text-color: var(--i-color-gray-700);
+    --i-text-primary-color: var(--i-color-blue-500);
     --i-text-subtle-color: var(--i-color-gray-500);
     --i-text-inverted-color: var(--i-color-gray-50);
     --i-text-link-color: var(--i-color-blue-600);

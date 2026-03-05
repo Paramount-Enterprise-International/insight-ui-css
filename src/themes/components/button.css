@@ -1,6 +1,10 @@
 @layer components {
   i-button,
   .i-btn {
+    /* =========================================
+       BASE TOKENS
+    ========================================== */
+
     --i-button-shadow: var(--i-shadow-sm);
     --i-button-font-family: var(--i-font-heading);
     --i-button-gap: var(--i-gap-md);
@@ -16,29 +20,77 @@
     --i-button-active-background-color: var(--i-color-blue-700);
     --i-background-color: var(--i-button-background-color);
 
-    display: flex;
+    /* =========================================
+       BASE LAYOUT
+    ========================================== */
+
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: var(--i-button-gap);
+
+    transition:
+      background-color 120ms ease,
+      box-shadow 120ms ease,
+      transform 60ms ease;
+
     cursor: pointer;
+
     box-shadow: var(--i-button-shadow);
     border: var(--i-button-border);
     border-radius: var(--i-button-border-radius);
-    padding: var(--i-button-padding);
+
+    background-color: var(--i-background-color);
+
+    /* IMPORTANT: padding moved to inner element */
+    padding: 0;
+
     min-width: var(--i-button-min-width) !important;
     height: var(--i-button-height);
+
     color: var(--i-button-color);
     font-size: var(--i-button-font-size);
     font-family: var(--i-button-font-family);
+    user-select: none;
+
     text-decoration: none;
+
+    /* =========================================
+       INNER ELEMENT (a / button)
+    ========================================== */
+
+    > .i-button-inner {
+      all: unset;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: var(--i-button-gap);
+
+      cursor: inherit;
+
+      padding: var(--i-button-padding);
+
+      width: 100%;
+      height: 100%;
+    }
+
+    /* =========================================
+       DISABLED
+    ========================================== */
 
     &[aria-disabled='true'] {
       cursor: not-allowed;
+      pointer-events: none;
     }
+
+    /* =========================================
+       SIZES
+    ========================================== */
 
     &[size='3xs'],
     &.i-btn-3xs {
-      --i-button-gap: 0 var(--i-gap-3xs);
+      --i-button-gap: var(--i-gap-3xs);
       --i-button-border-radius: var(--i-radius-2xs);
       --i-button-padding: 0 var(--i-padding-3xs);
       --i-button-height: var(--i-size-3xs);
@@ -48,7 +100,7 @@
 
     &[size='2xs'],
     &.i-btn-2xs {
-      --i-button-gap: 0 var(--i-gap-2xs);
+      --i-button-gap: var(--i-gap-2xs);
       --i-button-border-radius: var(--i-radius-2xs);
       --i-button-padding: 0 var(--i-padding-2xs);
       --i-button-height: var(--i-size-2xs);
@@ -58,7 +110,7 @@
 
     &[size='xs'],
     &.i-btn-xs {
-      --i-button-gap: 0 var(--i-gap-xs);
+      --i-button-gap: var(--i-gap-xs);
       --i-button-border-radius: var(--i-radius-xs);
       --i-button-padding: 0 var(--i-padding-xs);
       --i-button-height: var(--i-size-xs);
@@ -68,7 +120,7 @@
 
     &[size='sm'],
     &.i-btn-sm {
-      --i-button-gap: 0 var(--i-gap-sm);
+      --i-button-gap: var(--i-gap-sm);
       --i-button-border-radius: var(--i-radius-sm);
       --i-button-padding: 0 var(--i-padding-sm);
       --i-button-height: var(--i-size-sm);
@@ -78,7 +130,7 @@
 
     &[size='md'],
     &.i-btn-md {
-      --i-button-gap: 0 var(--i-gap-md);
+      --i-button-gap: var(--i-gap-md);
       --i-button-border-radius: var(--i-radius-md);
       --i-button-padding: 0 var(--i-padding-md);
       --i-button-height: var(--i-size-md);
@@ -88,7 +140,7 @@
 
     &[size='lg'],
     &.i-btn-lg {
-      --i-button-gap: 0 var(--i-gap-lg);
+      --i-button-gap: var(--i-gap-lg);
       --i-button-border-radius: var(--i-radius-lg);
       --i-button-padding: 0 var(--i-padding-lg);
       --i-button-height: var(--i-size-lg);
@@ -96,15 +148,18 @@
       --i-button-font-size: var(--i-text-lg);
     }
 
+    /* =========================================
+       VARIANTS
+    ========================================== */
+
     &[variant='primary'],
     &.i-btn-primary {
       --i-button-background-color: var(--i-color-blue-500);
       --i-button-hover-background-color: var(--i-color-blue-600);
       --i-button-active-background-color: var(--i-color-blue-700);
+
       &[aria-disabled='true'] {
         --i-button-background-color: var(--i-color-blue-300);
-        --i-button-hover-background-color: var(--i-color-blue-300);
-        --i-button-active-background-color: var(--i-color-blue-300);
       }
     }
 
@@ -113,10 +168,9 @@
       --i-button-background-color: var(--i-color-amber-500);
       --i-button-hover-background-color: var(--i-color-amber-600);
       --i-button-active-background-color: var(--i-color-amber-700);
+
       &[aria-disabled='true'] {
         --i-button-background-color: var(--i-color-amber-300);
-        --i-button-hover-background-color: var(--i-color-amber-300);
-        --i-button-active-background-color: var(--i-color-amber-300);
       }
     }
 
@@ -125,10 +179,9 @@
       --i-button-background-color: var(--i-color-red-500);
       --i-button-hover-background-color: var(--i-color-red-600);
       --i-button-active-background-color: var(--i-color-red-700);
+
       &[aria-disabled='true'] {
         --i-button-background-color: var(--i-color-red-300);
-        --i-button-hover-background-color: var(--i-color-red-300);
-        --i-button-active-background-color: var(--i-color-red-300);
       }
     }
 
@@ -137,10 +190,9 @@
       --i-button-background-color: var(--i-color-green-500);
       --i-button-hover-background-color: var(--i-color-green-600);
       --i-button-active-background-color: var(--i-color-green-700);
+
       &[aria-disabled='true'] {
         --i-button-background-color: var(--i-color-green-300);
-        --i-button-hover-background-color: var(--i-color-green-300);
-        --i-button-active-background-color: var(--i-color-green-300);
       }
     }
 
@@ -153,13 +205,23 @@
       --i-button-active-background-color: var(--i-color-gray-100);
     }
 
-    &:hover {
+    /* =========================================
+       INTERACTION STATES
+    ========================================== */
+
+    &:not([aria-disabled='true']):hover {
       --i-background-color: var(--i-button-hover-background-color);
     }
 
-    &:active {
-      --i-button-shadow: var(--i-shadow-xs);
+    &:not([aria-disabled='true']):active {
       --i-background-color: var(--i-button-active-background-color);
+      --i-button-shadow: var(--i-shadow-xs);
+      transform: translateY(1px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--i-color-blue-400);
+      outline-offset: 2px;
     }
   }
 }
