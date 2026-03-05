@@ -1,5 +1,8 @@
 /* semantic color */
 @layer utilities {
+  .text-primary {
+    color: var(--i-text-primary-color);
+  }
   .text-subtle {
     color: var(--i-text-subtle-color);
   }
