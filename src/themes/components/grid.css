@@ -530,6 +530,9 @@
         align-items: center;
         min-width: 0;
         max-width: 100%;
+        .i-grid-tree-checkbox + .i-grid-cell {
+          padding: var(--i-padding-2xs) 0px;
+        }
       }
 
       .i-grid-tree-indent {
@@ -555,7 +558,7 @@
       .i-grid-tree-radio {
         flex: 0 0 auto;
         margin: 0;
-        /* margin-right: 8px; */
+        margin-right: 8px;
         width: 14px;
         height: 14px;
       }
