@@ -42,6 +42,12 @@
       }
     }
 
+    &:has(> a[aria-disabled='true']) {
+      cursor: not-allowed;
+      pointer-events: none;
+      --i-background-color: var(--i-color-gray-50);
+    }
+
     &:hover {
       box-shadow: var(--i-shadow-sm);
       --i-background-color: var(--i-color-gray-50);
