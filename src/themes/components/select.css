@@ -1,170 +1,148 @@
 /*
  * ISelect
- * Version: 2.1.1
- *
- * Fix:
- * - When options panel is portaled to body, neutralize absolute position modifiers
- *   (prevents "top then bottom" flicker/jump)
+ * Version: 1.0.0
  */
+
+@layer themes {
+  :root {
+    --i-select-border-color: var(--i-color-gray-300);
+  }
+}
+
 @layer components {
-  i-select {
-    --i-select-options-max-height: 174px;
-    --i-select-options-min-width: 160px;
+  i-select,
+  .i-select {
+    /* =========================================
+       TOKENS (aligned with i-input)
+    ========================================== */
+
+    --i-select-border-color: var(--i-color-gray-200);
+    --i-select-border: 1px solid var(--i-select-border-color);
+    --i-select-color: var(--i-text-color);
+    --i-select-font-size: var(--i-text-md);
+    --i-select-padding-y: var(--i-padding-xs);
+    --i-select-padding-x: var(--i-padding-2xs);
+    --i-select-background: var(--i-color-white);
+    --i-select-focus-border-color: var(--i-color-blue-500);
+    --i-select-box-shadow: var(--i-shadow-xs);
+
+    --i-button-size-md: var(--i-size-md);
+
+    /* =========================================
+       BASE
+    ========================================== */
+
     display: flex;
     position: relative;
-    flex-direction: column;
-
-    i-input {
-      width: 100%;
-    }
-
-    .i-options-toggler {
-      display: flex;
-      position: absolute;
-      top: 1.5px;
-      right: 2px;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      border-radius: var(--i-radius-md);
-      width: 30px;
-      height: 30px;
-
-      i {
-        color: var(--i-text-subtle-color);
-      }
-
-      &:hover {
-        i {
-          color: var(--i-text-color);
-        }
-      }
-    }
-  }
-
-  .i-options,
-  i-options {
-    position: absolute;
-    z-index: 1000;
-    border: var(--i-border);
+    align-items: center;
+    box-shadow: var(--i-select-box-shadow);
+    border: var(--i-select-border);
     border-radius: var(--i-radius-md);
-    background: var(--i-color-white);
-    padding: var(--i-spacing-5xs);
-    width: 100%;
-    min-width: var(--i-select-options-min-width);
-    max-height: var(--i-select-options-max-height);
-    font-size: var(--i-text-md);
+    background-color: var(--i-select-background);
+    padding: 0 var(--i-select-padding-x);
+    height: var(--i-button-size-md);
 
-    /* ---- Position modifiers ---- */
+    /* =========================================
+       SELECT ELEMENT
+    ========================================== */
 
-    /* Bottom-left (default) */
-    &.i-options--bottom,
-    &.i-options--bottom-left {
-      top: 40px;
-      left: 0;
-      margin-top: 4px;
-    }
+    select {
+      flex: 1 1 0%;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
 
-    /* Bottom-right */
-    &.i-options--bottom-right {
-      top: 40px;
-      right: 0;
-      margin-top: 4px;
-    }
-
-    /* Top-left */
-    &.i-options--top,
-    &.i-options--top-left {
-      bottom: 40px;
-      left: 0;
-      margin-bottom: 4px;
-    }
-
-    /* Top-right */
-    &.i-options--top-right {
-      right: 0;
-      bottom: 40px;
-      margin-bottom: 4px;
-    }
-
-    /* Side positions */
-    &.i-options--right {
-      top: 0;
-      left: 100%;
-      margin-left: 4px;
-    }
-
-    &.i-options--left {
-      top: 0;
-      right: 100%;
-      margin-right: 4px;
-    }
-
-    /* ✅ NEW: when portaled, ignore all absolute modifier positioning */
-    &.i-options--portaled {
-      top: auto;
-      right: auto;
-      bottom: auto;
-      left: auto;
-      margin: 0;
-    }
-
-    .i-option {
-      display: flex;
-      align-items: center;
       cursor: pointer;
-      border-radius: var(--i-radius-md);
-      padding: var(--i-spacing-4xs) var(--i-spacing-sm);
+
+      outline: none;
+      border: none;
+      background: transparent;
+
+      padding: var(--i-select-padding-y) calc(var(--i-select-padding-x) * 2)
+        var(--i-select-padding-y) var(--i-select-padding-x);
+
       width: 100%;
+      height: 100%;
+
+      /* truncate text */
       overflow: hidden;
+
+      color: var(--i-select-color);
+      font-size: var(--i-select-font-size);
+      font-family: var(--i-font-body);
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
 
-      &.disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
+    /* =========================================
+       DROPDOWN ICON (arrow)
+    ========================================== */
 
-      &.active {
-        background-color: var(--i-color-blue-50);
-      }
+    &::after {
+      position: absolute;
+      right: var(--i-select-padding-x);
+      border-top: 5px solid var(--i-color-gray-500);
+      border-right: 5px solid transparent;
 
-      &.selected {
-        font-weight: 500;
-      }
+      border-left: 5px solid transparent;
 
-      .i-option-label {
-        flex: 1 1 auto;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        --i-background-color: transparent;
-      }
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      content: '';
+    }
 
-      .i-option-check {
-        display: inline-flex;
-        flex: 0 0 auto;
-        justify-content: center;
-        align-items: center;
-        margin-left: 8px;
-        color: var(--i-color-primary);
-        --i-background-color: transparent;
-      }
+    /* =========================================
+       FOCUS STATE (same as i-input)
+    ========================================== */
 
-      &:hover {
-        background-color: var(--i-color-blue-50);
-      }
+    &:has(select:focus) {
+      outline-color: var(--i-select-focus-border-color);
+      outline-style: solid;
+      outline-width: 2px;
+      outline-offset: -2px;
+    }
+
+    /* =========================================
+       INVALID STATE
+    ========================================== */
+
+    &:has(select[aria-invalid='true']) {
+      --i-select-focus-border-color: var(--i-color-danger);
+      outline-color: var(--i-select-focus-border-color);
+      outline-style: solid;
+      outline-width: 2px;
+      outline-offset: -2px;
+    }
+
+    /* =========================================
+       DISABLED
+    ========================================== */
+
+    &:has(select:disabled) {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &:has(select:disabled) select {
+      cursor: not-allowed;
     }
   }
 
-  i-fc-select {
+  /* =========================================
+     FORM CONTROL WRAPPER (match i-fc-input)
+  ========================================== */
+
+  i-fc-select,
+  .i-fc-select {
     display: flex;
     flex-direction: column;
     padding-bottom: var(--i-padding-2xs);
 
+    label:first-child,
     .i-fc-select__label {
       font-size: var(--i-text-sm) !important;
+      text-align: left;
 
       .i-fc-select__required {
         color: var(--i-color-danger);
@@ -175,6 +153,7 @@
       height: 16px;
       color: var(--i-color-danger);
       font-size: var(--i-text-sm) !important;
+      text-align: left;
     }
 
     &:not(:has(.i-fc-select__error)) {
