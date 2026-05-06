@@ -10,7 +10,7 @@
 @layer components {
   ih-root,
   app-root,
-  ir-root,
+  /* ir-root, */
   ir-standalone {
     display: flex;
     flex-direction: row;
@@ -22,9 +22,9 @@
     overflow: hidden;
   }
 
-  ir-root {
+  /* ir-root {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+  } */
 }
