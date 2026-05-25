@@ -1,6 +1,6 @@
 /*
  * ISelect
- * Version: 2.1.2
+ * Version: 2.1.3
  *
  * Fix:
  * - When options panel is portaled to body, neutralize absolute position modifiers
@@ -8,6 +8,7 @@
  * - Let options panel grow to fit normal option text
  * - Avoid truncating option text too early
  * - Keep ellipsis only when panel reaches viewport max width
+ * - Prevent selected long value from stretching/breaking the select trigger
  */
 @layer components {
   i-select {
@@ -17,9 +18,26 @@
     display: flex;
     position: relative;
     flex-direction: column;
+    min-width: 0;
+    max-width: 100%;
 
     i-input {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    /*
+     * Important:
+     * The selected value can be very long.
+     * It should truncate inside the input, not stretch the select.
+     */
+    i-input input {
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .i-options-toggler {
@@ -74,7 +92,6 @@
 
     /* ---- Position modifiers ---- */
 
-    /* Bottom-left (default) */
     &.i-options--bottom,
     &.i-options--bottom-left {
       top: 40px;
@@ -82,14 +99,12 @@
       margin-top: 4px;
     }
 
-    /* Bottom-right */
     &.i-options--bottom-right {
       top: 40px;
       right: 0;
       margin-top: 4px;
     }
 
-    /* Top-left */
     &.i-options--top,
     &.i-options--top-left {
       bottom: 40px;
@@ -97,14 +112,12 @@
       margin-bottom: 4px;
     }
 
-    /* Top-right */
     &.i-options--top-right {
       right: 0;
       bottom: 40px;
       margin-bottom: 4px;
     }
 
-    /* Side positions */
     &.i-options--right {
       top: 0;
       left: 100%;
@@ -172,7 +185,6 @@
         max-width: none;
         overflow: hidden;
         text-overflow: ellipsis;
-
         white-space: nowrap;
 
         --i-background-color: transparent;
@@ -199,6 +211,8 @@
     display: flex;
     flex-direction: column;
     padding-bottom: var(--i-padding-2xs);
+    min-width: 0;
+    max-width: 100%;
 
     .i-fc-select__label {
       font-size: var(--i-text-sm) !important;
