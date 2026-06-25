@@ -9,7 +9,7 @@
  * - Avoid truncating option text too early
  * - Keep ellipsis only when panel reaches viewport max width
  * - Prevent selected long value from stretching/breaking the select trigger
- * - Keep option rows full-width so active/hover background is not broken
+ * - Keep option rows full-width so active/hover background is not broken --
  */
 @layer components {
   i-select {
