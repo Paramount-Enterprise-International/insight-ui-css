@@ -50,6 +50,7 @@
       border-bottom: var(--i-border);
       width: 100%;
       min-width: 100%;
+      overflow-x: clip;
       font-weight: 600;
 
       i-grid-header-cell {
@@ -122,11 +123,11 @@
           .i-grid-header-cell__resize-handle {
             position: absolute;
             top: 0;
-            right: -4px;
+            right: 0;
             z-index: 2;
             cursor: col-resize;
 
-            width: 7px;
+            width: 4px;
             height: 100%;
             --i-background-color: none;
 
