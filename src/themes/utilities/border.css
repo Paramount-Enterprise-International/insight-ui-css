@@ -1,6 +1,14 @@
 @layer themes {
   :root {
     --i-border-color: var(--i-color-gray-200);
+    --i-border-black-color: var(--i-color-black);
+    --i-border-white-color: var(--i-color-white);
+    --i-border-subtle-color: var(--i-color-subtle);
+    --i-border-info-color: var(--i-color-blue-500);
+    --i-border-warning-color: var(--i-color-amber-400);
+    --i-border-danger-color: var(--i-color-red-500);
+    --i-border-success-color: var(--i-color-green-400);
+
     --i-border-radius: 0px;
     --i-border-style: solid;
     --i-border-width: 1px;
@@ -246,25 +254,25 @@
 
 @layer utilities {
   .border-subtle {
-    --i-border-color: var(--i-color-subtle);
+    --i-border-color: var(--i-border-subtle-color);
   }
   .border-black {
-    --i-border-color: var(--i-color-black);
+    --i-border-color: var(--i-border-black-color);
   }
   .border-white {
-    --i-border-color: var(--i-color-white);
+    --i-border-color: var(--i-border-white-color);
   }
   .border-info {
-    --i-border-color: var(--i-color-blue-500);
+    --i-border-color: var(--i-border-info-color);
   }
   .border-warning {
-    --i-border-color: var(--i-color-amber-400);
+    --i-border-color: var(--i-border-warning-color);
   }
   .border-danger {
-    --i-border-color: var(--i-color-red-500);
+    --i-border-color: var(--i-border-danger-color);
   }
   .border-success {
-    --i-border-color: var(--i-color-green-400);
+    --i-border-color: var(--i-border-success-color);
   }
 }
 

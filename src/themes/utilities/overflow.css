@@ -1,0 +1,56 @@
+/* overflow */
+@layer utilities {
+  .overflow-visible {
+    overflow: visible;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .overflow-scroll {
+    overflow: scroll;
+  }
+  .overflow-auto {
+    overflow: auto;
+  }
+  .overflow-clip {
+    overflow: clip;
+  }
+}
+
+/* overflow-x */
+@layer utilities {
+  .overflow-x-visible {
+    overflow-x: visible;
+  }
+  .overflow-x-hidden {
+    overflow-x: hidden;
+  }
+  .overflow-x-scroll {
+    overflow-x: scroll;
+  }
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+  .overflow-x-clip {
+    overflow-x: clip;
+  }
+}
+
+/* overflow-y */
+@layer utilities {
+  .overflow-y-visible {
+    overflow-y: visible;
+  }
+  .overflow-y-hidden {
+    overflow-y: hidden;
+  }
+  .overflow-y-scroll {
+    overflow-y: scroll;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+  .overflow-y-clip {
+    overflow-y: clip;
+  }
+}

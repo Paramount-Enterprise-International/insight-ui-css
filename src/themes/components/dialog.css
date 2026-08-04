@@ -31,6 +31,10 @@
       max-height: 90vh;
       overflow: auto;
       pointer-events: auto;
+      > * {
+        display: flex;
+        width: 100%;
+      }
     }
 
     i-dialog {
@@ -66,6 +70,13 @@
         max-height: 100%;
         overflow: hidden auto;
 
+        /* &:has(i-input:last-child),
+        &:has(i-fc-input:last-child),
+        &:has(i-textarea:last-child),
+        &:has(i-fc-textarea:last-child) {
+          padding-bottom: 0px;
+        } */
+
         &::-webkit-scrollbar {
           --i-background-color: rgba(255, 255, 255, 0.1);
           width: 6px;
@@ -80,10 +91,17 @@
 
       .i-dialog-actions {
         --i-background-color: var(--i-color-gray-100);
+        display: flex;
+        justify-content: end;
+        align-items: center;
         gap: var(--i-spacing-3xs);
         border-top: var(--i-border);
         padding: var(--i-spacing-xs) var(--i-spacing-md);
         width: 100%;
+        &:last-child {
+          border-bottom-right-radius: var(--i-radius-md);
+          border-bottom-left-radius: var(--i-radius-md);
+        }
       }
     }
   }

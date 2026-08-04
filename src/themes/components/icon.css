@@ -12,6 +12,14 @@
       --i-background-color: initial;
     }
 
+    .i-icon-3xs {
+      font-size: var(--i-icon-3xs);
+    }
+
+    .i-icon-2xs {
+      font-size: var(--i-icon-2xs);
+    }
+
     .i-icon-xs {
       font-size: var(--i-icon-xs);
     }

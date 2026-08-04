@@ -7,6 +7,7 @@
 @import './typography/letter-spacing.css';
 @import './typography/line-clamp.css';
 @import './typography/line-height.css';
+@import './typography/list.css';
 @import './typography/semantic-color.css';
 @import './typography/text-align.css';
 @import './typography/text-decoration.css';
