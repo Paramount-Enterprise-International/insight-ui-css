@@ -75,6 +75,59 @@
       .i-section-tabs-headers {
         display: flex;
         border-bottom: var(--i-border);
+        position: relative;
+
+        &.i-section-tabs-headers--sticky {
+          position: sticky;
+          top: var(--i-section-tabs-sticky-top, -16px);
+          z-index: 40;
+          background-color: var(--i-color-gray-50);
+        }
+
+        .i-section-tabs-scroll {
+          display: flex;
+          flex: 1 1 auto;
+          min-width: 0;
+
+          &.i-section-tabs-scroll--scrollable {
+            overflow-x: auto;
+            scrollbar-width: none;
+            scroll-snap-type: x proximity;
+
+            &::-webkit-scrollbar {
+              display: none;
+            }
+
+            .i-section-tabs-header {
+              flex: 0 0 auto;
+              white-space: nowrap;
+              scroll-snap-align: start;
+            }
+          }
+        }
+
+        .i-section-tabs-chevron {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 0 0 auto;
+          border: none;
+          background: transparent;
+          color: var(--i-text-subtle-color);
+          cursor: pointer;
+          z-index: 2;
+
+          &.hidden {
+            visibility: hidden;
+            pointer-events: none;
+          }
+
+          &:hover {
+            color: var(--i-text-color);
+            background-color: var(--i-color-gray-100);
+          }
+        }
+
         .i-section-tabs-header {
           display: flex;
           flex: 1 1 0%;
@@ -89,6 +142,10 @@
           max-width: 100%;
           font-size: var(--i-text-md);
           font-family: var(--i-font-heading);
+          /* Reset for descendants (default title span or any custom header content) so they
+             don't inherit an opaque background from an ancestor i-section and show through
+             this button's own hover/active background instead. */
+          --i-background-color: initial;
           &.active {
             box-shadow: inset 0px -3px 0px var(--i-color-blue-500);
             background-color: var(--i-color-white);
@@ -125,6 +182,76 @@
           border-top-right-radius: var(--i-radius-md);
           border-top-left-radius: var(--i-radius-md);
           overflow: hidden;
+        }
+      }
+
+      /* ─── Opt-in "bar" style variant (ported from the former i-section-tab-bar) ─── */
+      &.i-section-tabs--bar {
+        background-color: var(--i-color-white);
+
+        .i-section-tabs-headers {
+          border-bottom: 2px solid var(--i-color-gray-200);
+          background-color: var(--i-color-white);
+
+          .i-section-tabs-header {
+            flex: 0 0 auto;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: none;
+            background-color: transparent;
+            border-bottom: 2px solid transparent;
+            padding: var(--i-padding-sm) var(--i-padding-lg);
+            color: var(--i-text-subtle-color);
+            /* Reset for descendants (e.g. a plain <span> in a custom <i-section-tab-header>) so
+               they don't inherit an opaque background from an ancestor i-section and show
+               through this button's own hover/active background instead. */
+            --i-background-color: initial;
+            transition:
+              color 0.15s,
+              border-color 0.15s,
+              background-color 0.15s;
+
+            &.active {
+              box-shadow: none;
+              position: relative;
+              z-index: 1;
+              background-color: transparent;
+              color: var(--i-text-color);
+              border-bottom-color: var(--i-color-blue-500);
+            }
+
+            &:hover {
+              color: var(--i-text-color);
+              background-color: var(--i-color-gray-100);
+            }
+
+            &:active {
+              background-color: var(--i-color-gray-200);
+            }
+          }
+
+          .i-section-tabs-chevron {
+            position: absolute;
+            top: 0;
+            bottom: 2px;
+
+            &.i-section-tabs-chevron--left {
+              left: 0;
+              background: linear-gradient(to right, var(--i-color-white) 50%, transparent);
+              &:hover {
+                background: linear-gradient(to right, var(--i-color-gray-100) 50%, transparent);
+              }
+            }
+
+            &.i-section-tabs-chevron--right {
+              right: 0;
+              background: linear-gradient(to left, var(--i-color-white) 50%, transparent);
+              &:hover {
+                background: linear-gradient(to left, var(--i-color-gray-100) 50%, transparent);
+              }
+            }
+          }
         }
       }
     }
