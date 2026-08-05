@@ -178,6 +178,11 @@
             input[type='checkbox'] {
               width: 14px;
               height: 14px;
+
+              &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
             }
           }
         }
@@ -218,6 +223,11 @@
             margin-right: 8px;
             width: 14px;
             height: 14px;
+
+            &:disabled {
+              opacity: 0.6;
+              cursor: not-allowed;
+            }
           }
 
           .i-grid-tree-head__title {
@@ -479,6 +489,11 @@
           margin: 0;
           width: 14px;
           height: 14px;
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
         }
       }
 
@@ -559,6 +574,20 @@
       .i-grid-tree-radio {
         flex: 0 0 auto;
         margin: 0;
+        margin-right: 8px;
+        width: 14px;
+        height: 14px;
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+
+      /* placeholder shown instead of the checkbox/radio when selectionRowHidden
+         is true for a row — keeps the tree text aligned across rows */
+      .i-grid-tree-checkbox-spacer {
+        flex: 0 0 auto;
         margin-right: 8px;
         width: 14px;
         height: 14px;
