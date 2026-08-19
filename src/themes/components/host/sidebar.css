@@ -92,12 +92,25 @@
       }
     }
 
+    .ih-sidebar-app-label {
+      padding: var(--i-spacing-xs) var(--i-spacing-xs) var(--i-spacing-5xs);
+
+      small {
+        color: var(--i-color-gray-400);
+        font-size: var(--i-text-xs);
+        font-family: var(--i-font-heading);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+    }
+
     .ih-sidebar-body {
       display: flex;
       flex: 1;
       flex-direction: column;
 
-      & > ul {
+      & > ul,
+      .ih-sidebar-favorites {
         display: flex;
         flex-direction: column;
         gap: var(--i-spacing-md);

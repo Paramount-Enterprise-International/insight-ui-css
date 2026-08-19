@@ -11,10 +11,23 @@
         padding: 0px;
 
         & > small {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: var(--i-spacing-3xs);
           padding: 0 var(--i-spacing-xs) var(--i-spacing-4xs);
           color: var(--i-color-gray-400);
           font-size: var(--i-text-sm);
           font-family: var(--i-font-heading);
+          background-color: transparent;
+
+          &.ih-menu-module--collapsible {
+            cursor: pointer;
+
+            &:hover {
+              color: var(--i-color-gray-600);
+            }
+          }
         }
 
         & > div,
@@ -43,6 +56,8 @@
             flex: 1 1 100%;
             font-size: var(--i-text-sm);
             font-family: var(--i-font-heading);
+            /* Transparent so :hover follows the row (parent) background. */
+            background-color: transparent;
           }
 
           &.is-selected {
@@ -64,6 +79,29 @@
           }
         }
 
+        /* Group headers stay gray-400 (lighter) — leaf items keep gray-600. */
+        & > div.ih-menu-group {
+          i,
+          h6 {
+            color: var(--i-color-gray-400);
+          }
+
+          &:hover {
+            i,
+            h6 {
+              color: var(--i-color-gray-400);
+            }
+          }
+        }
+
+        /* fa-fw (appended to the icon class in host.ts) sets the fixed 1.25em
+           icon width; this just prevents the icon flex item from shrinking so
+           the menu title stays aligned. */
+        & > div > i:not(.ih-menu-chevron),
+        & > a > i:not(.ih-menu-favorite) {
+          flex: none;
+        }
+
         > ul {
           display: flex;
           flex-direction: column;
@@ -80,6 +118,33 @@
           &.collapsed {
             display: none;
           }
+        }
+      }
+    }
+
+    .ih-menu-chevron {
+      color: var(--i-color-gray-400);
+      font-size: var(--i-text-sm);
+      margin-left: auto;
+    }
+
+    .ih-menu-favorite {
+      cursor: pointer;
+      color: var(--i-color-gray-400);
+      font-size: var(--i-text-sm);
+      width: var(--i-spacing-md);
+      text-align: center;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: var(--i-color-blue-500);
+      }
+
+      &.is-favorite {
+        color: var(--i-color-amber-500);
+
+        &:hover {
+          color: var(--i-color-amber-600);
         }
       }
     }
