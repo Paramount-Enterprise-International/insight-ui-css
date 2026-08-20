@@ -533,6 +533,11 @@
         .i-grid-tree-checkbox + .i-grid-cell {
           padding: var(--i-padding-2xs) 0px;
         }
+        > .i-grid-cell {
+          box-shadow: none;
+          border-bottom: none;
+          background-color: transparent;
+        }
       }
 
       .i-grid-tree-indent {
