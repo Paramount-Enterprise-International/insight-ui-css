@@ -15,11 +15,11 @@
           flex-direction: row;
           align-items: center;
           gap: var(--i-spacing-3xs);
+          background-color: transparent;
           padding: 0 var(--i-spacing-xs) var(--i-spacing-4xs);
           color: var(--i-color-gray-400);
           font-size: var(--i-text-sm);
           font-family: var(--i-font-heading);
-          background-color: transparent;
 
           &.ih-menu-module--collapsible {
             cursor: pointer;
@@ -54,10 +54,10 @@
 
           h6 {
             flex: 1 1 100%;
-            font-size: var(--i-text-sm);
-            font-family: var(--i-font-heading);
             /* Transparent so :hover follows the row (parent) background. */
             background-color: transparent;
+            font-size: var(--i-text-sm);
+            font-family: var(--i-font-heading);
           }
 
           &.is-selected {
@@ -124,18 +124,18 @@
     }
 
     .ih-menu-chevron {
+      margin-left: auto;
       color: var(--i-color-gray-400);
       font-size: var(--i-text-sm);
-      margin-left: auto;
     }
 
     .ih-menu-favorite {
+      transition: color 0.15s ease;
       cursor: pointer;
+      width: var(--i-spacing-md);
       color: var(--i-color-gray-400);
       font-size: var(--i-text-sm);
-      width: var(--i-spacing-md);
       text-align: center;
-      transition: color 0.15s ease;
 
       &:hover {
         color: var(--i-color-blue-500);
@@ -152,16 +152,16 @@
 
     .ih-menu-label {
       display: flex;
-      flex-direction: column;
       flex: 1 1 100%;
-      min-width: 0;
+      flex-direction: column;
       gap: var(--i-spacing-5xs);
+      min-width: 0;
 
       h6 {
         flex: none;
-        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 
@@ -180,22 +180,22 @@
     .ih-menu-application {
       flex: none;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       color: var(--i-color-gray-400);
       font-size: var(--i-text-xs);
       font-family: var(--i-font-heading);
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
   ih-sidebar {
     ih-menu {
       a[data-menu-id] {
-        cursor: grab;
+        /* cursor: grab; */
 
         &.is-dragging {
-          cursor: grabbing;
           opacity: 0.4;
+          cursor: grabbing;
         }
       }
     }
@@ -203,31 +203,36 @@
     .ih-sidebar-favorites {
       &.is-drag-over {
         cursor: grabbing;
-        background-color: var(--i-color-gray-50);
         border-radius: var(--i-radius-md);
+        background-color: var(--i-color-gray-50);
+
+        & > li div,
+        a {
+          cursor: grabbing;
+        }
       }
     }
   }
 
   .ih-drag-ghost {
-    position: fixed;
-    z-index: 10000;
     display: flex;
+    position: fixed;
     flex-direction: row;
     align-items: center;
     gap: var(--i-spacing-3xs);
+    opacity: 0.9;
+    z-index: 10000;
+    cursor: grabbing;
     margin: 0;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.16);
     border: var(--i-border);
     border-radius: var(--i-radius-md);
     background-color: var(--i-color-white);
-    box-shadow: 0 4px 16px rgb(0 0 0 / 0.16);
     padding: var(--i-spacing-3xs) var(--i-spacing-sm);
-    min-width: 180px;
     width: max-content;
-    text-decoration: none;
-    opacity: 0.9;
+    min-width: 180px;
     pointer-events: none;
-    cursor: grabbing;
+    text-decoration: none;
 
     i,
     h6 {
@@ -238,9 +243,9 @@
       flex: 1 1 auto;
       margin: 0;
       font-size: var(--i-text-sm);
+      line-height: 1.1;
       font-family: var(--i-font-heading);
       white-space: nowrap;
-      line-height: 1.1;
     }
 
     .ih-menu-label {
