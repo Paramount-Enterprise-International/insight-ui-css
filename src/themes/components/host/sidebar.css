@@ -113,9 +113,9 @@
       .ih-sidebar-favorites {
         display: flex;
         flex-direction: column;
-        gap: var(--i-spacing-md);
+        gap: var(--i-spacing-sm);
         margin: 0px;
-        padding: var(--i-spacing-sm) var(--i-spacing-xs);
+        padding: var(--i-spacing-sm) var(--i-spacing-xs) 0;
         list-style: none;
       }
     }
