@@ -45,10 +45,8 @@
         text-align: left;
         cursor: pointer;
 
-        &:focus-visible {
-          outline: 2px solid var(--i-color-blue-500);
-          outline-offset: 2px;
-          border-radius: var(--i-radius-md);
+        &:focus {
+          outline: none;
         }
       }
 
@@ -98,9 +96,9 @@
       }
 
       .ih-user-dropdown {
-        top: calc(100% + 4px);
-        right: var(--i-spacing-md);
-        left: var(--i-spacing-md);
+        top: calc(100% + var(--i-spacing-5xs));
+        right: var(--i-spacing-5xs);
+        left: var(--i-spacing-5xs);
         display: flex;
         flex-direction: column;
         width: auto;
@@ -114,6 +112,10 @@
           font: inherit;
           text-align: left;
           text-decoration: none;
+
+          &:focus {
+            outline: none;
+          }
 
           i {
             flex: none;
