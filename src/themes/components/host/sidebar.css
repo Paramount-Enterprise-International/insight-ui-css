@@ -119,6 +119,11 @@
 
           i {
             flex: none;
+            background-color: transparent;
+
+            &::before {
+              background-color: transparent;
+            }
           }
 
           &:hover,
