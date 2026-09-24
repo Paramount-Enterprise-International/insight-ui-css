@@ -74,7 +74,9 @@
       height: var(--i-toggle-height);
 
       &:checked ~ .i-toggle__thumb {
-        transform: translateX(calc(var(--i-toggle-handle-size) - var(--i-toggle-padding) - 1px));
+        transform: translateX(
+          calc(var(--i-toggle-width) - var(--i-toggle-handle-size) - (var(--i-toggle-padding) * 2))
+        );
       }
 
       &:focus-visible ~ .i-toggle__thumb {
