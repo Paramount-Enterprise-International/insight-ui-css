@@ -53,7 +53,7 @@
       padding: var(--i-padding-lg);
       width: 100%;
 
-      > *:not(router-outlet) {
+      > *:not(router-outlet, i-has-mn-route) {
         display: flex;
         flex-direction: column;
         gap: var(--i-gap-2xl);
