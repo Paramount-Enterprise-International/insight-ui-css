@@ -1,5 +1,5 @@
 // vite.config.ts
-import { defineConfig } from 'vite';
+import { defaultAllowedOrigins,defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -33,6 +33,14 @@ export default defineConfig({
 
       // (B) Externalize lit (if host already has it)
       // external: ['lit', 'lit/decorators.js'],
+    },
+  },
+  server: {
+    cors: {
+      origin: [
+        defaultAllowedOrigins,
+        'https://account-local.paramountenterprise.co.id',
+      ],
     },
   },
 });
