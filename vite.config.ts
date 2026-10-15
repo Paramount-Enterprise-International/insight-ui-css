@@ -40,6 +40,9 @@ export default defineConfig({
       origin: [
         defaultAllowedOrigins,
         'https://account-local.paramountenterprise.co.id',
+        'https://account-dev.paramountenterprise.co.id',
+        'https://atlas-local.paramount-land.com:8443',
+        'https://atlas-dev.paramount-land.com',
       ],
     },
   },
