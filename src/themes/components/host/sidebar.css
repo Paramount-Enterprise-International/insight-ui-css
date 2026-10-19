@@ -5,8 +5,15 @@
 }
 
 @layer components {
+  html.ih-sidebar-resizing,
+  html.ih-sidebar-resizing * {
+    cursor: col-resize !important;
+    user-select: none !important;
+  }
+
   ih-sidebar {
     display: flex;
+    position: relative;
     flex: 0 0 var(--i-sidebar-width);
     flex-direction: column;
     transform: translateX(0);
@@ -16,6 +23,56 @@
     border-right: var(--i-border);
     min-width: 0;
 
+    &.is-resizing,
+    &.is-width-initializing {
+      transition: none;
+    }
+
+    .ih-sidebar-resize-handle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      cursor: col-resize;
+      background: transparent;
+      width: 8px;
+      touch-action: none;
+      user-select: none;
+
+      &[hidden] {
+        display: none;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: transparent;
+        width: 0;
+        content: '';
+      }
+
+      &:hover::after,
+      &:focus-visible::after {
+        background: var(--i-color-gray-300);
+      }
+
+      &:hover::after {
+        width: 2px;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &.is-resizing .ih-sidebar-resize-handle::after {
+      background: var(--i-color-gray-300);
+      width: 2px;
+    }
+
     &.hidden {
       flex-basis: 0;
       transform: translateX(calc(var(--i-sidebar-width) * -1));
@@ -23,8 +80,8 @@
 
     .ih-sidebar-header {
       --i-background-color: var(--i-color-white);
-      position: relative;
       display: flex;
+      position: relative;
       flex: 0 0 var(--i-header-height);
       flex-direction: row;
       align-items: center;
@@ -37,13 +94,13 @@
         flex: 1 1 auto;
         align-items: center;
         gap: 8px;
-        min-width: 0;
-        padding: 0;
+        cursor: pointer;
         border: 0;
         background: transparent;
+        padding: 0;
+        min-width: 0;
         color: inherit;
         text-align: left;
-        cursor: pointer;
 
         &:focus {
           outline: none;
@@ -98,10 +155,10 @@
       }
 
       .ih-user-dropdown {
+        display: flex;
         top: calc(100% + var(--i-spacing-5xs));
         right: var(--i-spacing-5xs);
         left: var(--i-spacing-5xs);
-        display: flex;
         flex-direction: column;
         width: auto;
         min-width: 0;
@@ -176,8 +233,8 @@
         color: var(--i-color-gray-400);
         font-size: var(--i-text-xs);
         font-family: var(--i-font-heading);
-        text-transform: uppercase;
         letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
     }
 
