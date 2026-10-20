@@ -12,7 +12,8 @@
  * - Keep option rows full-width so active/hover background is not broken --
  */
 @layer components {
-  i-select {
+  i-select,
+  i-select-company {
     --i-select-options-max-height: 174px;
     --i-select-options-min-width: 160px;
 
@@ -211,7 +212,8 @@
     }
   }
 
-  i-fc-select {
+  i-fc-select,
+  i-fc-select-company {
     display: flex;
     flex-direction: column;
     padding-bottom: var(--i-padding-2xs);
