@@ -37,9 +37,9 @@
           align-items: center;
           gap: var(--i-spacing-3xs);
           cursor: pointer;
-          margin: var(--i-spacing-5xs) 0px;
-          border-radius: var(--i-radius-md);
-          padding: var(--i-spacing-3xs) var(--i-spacing-xs);
+          /* margin: var(--i-spacing-5xs) 0px; */
+          /* border-radius: var(--i-radius-md); */
+          padding: var(--i-spacing-2xs) var(--i-spacing-xs);
           text-decoration: none;
 
           > span:not(.highlight-search) {
@@ -70,12 +70,17 @@
           }
 
           &:hover {
-            background-color: var(--i-color-gray-100);
+            background-color: var(--i-color-gray-200) !important;
 
             i,
             h6 {
               color: var(--i-color-gray-800);
             }
+          }
+
+          &.is-active {
+            box-shadow: inset 3px 0 0 0 var(--i-color-blue-500);
+            background-color: var(--i-color-white);
           }
         }
 
@@ -88,9 +93,10 @@
           }
 
           &:hover {
+            background-color: transparent;
             i,
             h6 {
-              color: var(--i-color-gray-400);
+              color: var(--i-color-gray-600);
             }
           }
         }
@@ -108,11 +114,11 @@
           flex-direction: column;
           margin: 0px;
           padding: 0px;
+          overflow: hidden;
           list-style: none;
 
           &.expanded {
             display: flex;
-            border-radius: var(--i-radius-md);
             background-color: var(--i-color-gray-100);
           }
 
@@ -125,14 +131,15 @@
 
     .ih-menu-chevron {
       margin-left: auto;
+      width: 16px !important;
       color: var(--i-color-gray-400);
       font-size: var(--i-text-sm);
     }
 
     .ih-menu-favorite {
+      flex: none;
       transition: color 0.15s ease;
       cursor: pointer;
-      flex: none;
       width: var(--i-spacing-md);
       color: var(--i-color-gray-400);
       font-size: var(--i-text-sm);
@@ -167,10 +174,10 @@
     }
 
     .ih-menu-label--compact {
-      gap: var(--i-spacing-6xs);
       /* Grow/shrink to fill the row minus the leaf icon and star; explicit
          width:auto overrides the generic direct-span width used for indent. */
       flex: 1 1 auto;
+      gap: var(--i-spacing-6xs);
       width: auto;
       min-width: 0;
       overflow: hidden;
@@ -180,21 +187,21 @@
       }
 
       .ih-menu-application {
-        line-height: 1.1;
         max-width: 100%;
+        line-height: 1.1;
       }
     }
 
     .ih-menu-application {
       display: block;
       flex: none;
+      max-width: 100%;
       overflow: hidden;
       color: var(--i-color-gray-400);
       font-size: var(--i-text-xs);
       font-family: var(--i-font-heading);
       text-overflow: ellipsis;
       white-space: nowrap;
-      max-width: 100%;
     }
   }
 
