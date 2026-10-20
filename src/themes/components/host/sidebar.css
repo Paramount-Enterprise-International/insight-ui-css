@@ -36,7 +36,7 @@
       z-index: 2;
       cursor: col-resize;
       background: transparent;
-      width: 8px;
+      width: 4px;
       touch-action: none;
       user-select: none;
 
@@ -76,6 +76,10 @@
     &.hidden {
       flex-basis: 0;
       transform: translateX(calc(var(--i-sidebar-width) * -1));
+    }
+
+    &.is-resizable .ih-sidebar-body {
+      margin-right: 4px;
     }
 
     .ih-sidebar-header {
@@ -242,6 +246,7 @@
       display: flex;
       flex: 1;
       flex-direction: column;
+      min-height: 0;
 
       & > ul > ih-menu > li > ul {
         border-radius: var(--i-radius-md);

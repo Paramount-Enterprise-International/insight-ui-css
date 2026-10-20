@@ -4,6 +4,9 @@
 @layer themes {
   :root {
     --i-header-height: 50px;
+    --i-breadcrumb-height: calc(
+      var(--i-size-s28) + 2 * var(--i-padding-2xs) + var(--i-border-width)
+    );
   }
 }
 
