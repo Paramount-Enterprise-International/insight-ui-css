@@ -37,9 +37,9 @@
           align-items: center;
           gap: var(--i-spacing-3xs);
           cursor: pointer;
-          margin: var(--i-spacing-5xs) 0px;
-          border-radius: var(--i-radius-md);
-          padding: var(--i-spacing-3xs) var(--i-spacing-xs);
+          /* margin: var(--i-spacing-5xs) 0px; */
+          /* border-radius: var(--i-radius-md); */
+          padding: var(--i-spacing-2xs) var(--i-spacing-xs);
           text-decoration: none;
 
           > span:not(.highlight-search) {
@@ -70,7 +70,7 @@
           }
 
           &:hover {
-            background-color: var(--i-color-gray-100);
+            background-color: var(--i-color-gray-200);
 
             i,
             h6 {
@@ -88,9 +88,10 @@
           }
 
           &:hover {
+            background-color: transparent;
             i,
             h6 {
-              color: var(--i-color-gray-400);
+              color: var(--i-color-gray-600);
             }
           }
         }
@@ -109,10 +110,10 @@
           margin: 0px;
           padding: 0px;
           list-style: none;
+          overflow: hidden;
 
           &.expanded {
             display: flex;
-            border-radius: var(--i-radius-md);
             background-color: var(--i-color-gray-100);
           }
 
@@ -127,6 +128,7 @@
       margin-left: auto;
       color: var(--i-color-gray-400);
       font-size: var(--i-text-sm);
+      width: 16px !important;
     }
 
     .ih-menu-favorite {

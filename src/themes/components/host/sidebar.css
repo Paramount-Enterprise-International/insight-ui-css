@@ -243,6 +243,10 @@
       flex: 1;
       flex-direction: column;
 
+      & > ul > ih-menu > li > ul {
+        border-radius: var(--i-radius-md);
+      }
+
       & > ul,
       .ih-sidebar-favorites {
         display: flex;
