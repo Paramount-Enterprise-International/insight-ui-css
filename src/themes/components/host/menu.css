@@ -42,8 +42,9 @@
           padding: var(--i-spacing-2xs) var(--i-spacing-xs);
           text-decoration: none;
 
-          > span:not(.highlight-search) {
+          > .ih-menu-indent {
             display: inline-block;
+            flex: 0 0 var(--i-spacing-sm);
             width: var(--i-spacing-sm);
           }
 
@@ -53,11 +54,15 @@
           }
 
           h6 {
-            flex: 1 1 100%;
+            flex: 1 1 auto;
             /* Transparent so :hover follows the row (parent) background. */
             background-color: transparent;
+            min-width: 0;
+            overflow: hidden;
             font-size: var(--i-text-sm);
             font-family: var(--i-font-heading);
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
 
           &.is-selected {
@@ -130,6 +135,7 @@
     }
 
     .ih-menu-chevron {
+      flex: none;
       margin-left: auto;
       width: 16px !important;
       color: var(--i-color-gray-400);
@@ -160,7 +166,7 @@
 
     .ih-menu-label {
       display: flex;
-      flex: 1 1 100%;
+      flex: 1 1 auto;
       flex-direction: column;
       gap: var(--i-spacing-5xs);
       min-width: 0;
@@ -174,12 +180,7 @@
     }
 
     .ih-menu-label--compact {
-      /* Grow/shrink to fill the row minus the leaf icon and star; explicit
-         width:auto overrides the generic direct-span width used for indent. */
-      flex: 1 1 auto;
       gap: var(--i-spacing-6xs);
-      width: auto;
-      min-width: 0;
       overflow: hidden;
 
       h6 {

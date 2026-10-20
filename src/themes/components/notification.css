@@ -5,6 +5,7 @@
   i-notification-bell {
     display: inline-flex;
     position: relative;
+    overflow: visible;
     .notification-badge {
       position: absolute;
       right: calc(-1 * var(--i-spacing-5xs));
@@ -48,7 +49,27 @@
     height: 100dvh;
     color: var(--i-text-color);
     header {
+      display: flex;
       flex-shrink: 0;
+      flex-direction: column;
+      box-sizing: border-box;
+      height: calc(var(--i-header-height, 50px) + var(--i-breadcrumb-height, 37px));
+    }
+    .notification-header-main {
+      flex: 0 0 var(--i-header-height, 50px);
+      border-bottom: var(--i-border);
+      min-width: 0;
+    }
+    .notification-header-summary {
+      flex: 1;
+      background-color: var(--i-color-gray-100);
+      min-width: 0;
+      min-height: 0;
+      font-family: var(--i-font-heading);
+
+      p {
+        font: inherit;
+      }
     }
     .notification-refresh-status {
       position: relative;
@@ -97,14 +118,13 @@
   }
 
   :is(i-notification-bell, i-notification-drawer) {
-    .notification-icon-action {
-      cursor: pointer;
-      width: var(--i-size-sm);
-      height: var(--i-size-sm);
+    .i-clickable {
+      width: calc(var(--i-icon-lg) + 2 * var(--i-padding-xs));
+      height: calc(var(--i-icon-lg) + 2 * var(--i-padding-xs));
 
-      &:hover,
-      &:focus-visible {
-        color: var(--i-color-gray-900);
+      i-icon {
+        width: var(--i-icon-lg);
+        height: var(--i-icon-lg);
       }
 
       &:focus-visible {
