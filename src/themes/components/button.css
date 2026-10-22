@@ -225,3 +225,40 @@
     }
   }
 }
+
+@layer components {
+  i-button[data-placeholder] {
+    cursor: default;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    min-width: 0 !important;
+    pointer-events: none;
+    color: transparent;
+  }
+  i-button {
+    --i-button-icon-size: var(--i-icon-md);
+  }
+  i-button[size='3xs'] {
+    --i-button-icon-size: var(--i-icon-3xs);
+  }
+  i-button[size='2xs'] {
+    --i-button-icon-size: var(--i-icon-2xs);
+  }
+  i-button[size='xs'] {
+    --i-button-icon-size: var(--i-icon-xs);
+  }
+  i-button[size='sm'] {
+    --i-button-icon-size: var(--i-icon-sm);
+  }
+  i-button[size='md'] {
+    --i-button-icon-size: var(--i-icon-md);
+  }
+  i-button[size='lg'] {
+    --i-button-icon-size: var(--i-icon-lg);
+  }
+  i-button > .i-button-inner > i-icon:only-child {
+    width: var(--i-button-icon-size);
+    min-width: var(--i-button-icon-size);
+  }
+}

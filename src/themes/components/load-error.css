@@ -1,0 +1,32 @@
+@layer components {
+  i-load-error.i-load-error {
+    display: block;
+  }
+  .i-load-error__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--i-gap-xs);
+    padding: var(--i-padding-2xl) var(--i-padding-md);
+    height: 100%;
+    text-align: center;
+  }
+  .i-load-error__content p {
+    margin: 0;
+  }
+  .i-load-error__message {
+    color: var(--i-color-red-700);
+    font-size: var(--i-text-sm);
+  }
+  i-load-error[density='compact'] .i-load-error__content {
+    padding-block: var(--i-padding-lg);
+  }
+  i-load-error[density='inline'] .i-load-error__content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0;
+    text-align: start;
+  }
+}

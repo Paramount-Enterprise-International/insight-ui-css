@@ -61,7 +61,7 @@
       display: flex;
       flex-direction: var(--i-flex-direction);
       padding: var(--i-spacing-sm);
-      &:has(> i-grid:only-child, > .i-grid:only-child) {
+      &:not([data-layout='padded']):has(> i-grid:only-child, > .i-grid:only-child) {
         padding: 0px;
       }
     }
@@ -74,8 +74,8 @@
       padding: 0px;
       .i-section-tabs-headers {
         display: flex;
-        border-bottom: var(--i-border);
         position: relative;
+        border-bottom: var(--i-border);
 
         &.i-section-tabs-headers--sticky {
           position: sticky;
@@ -91,8 +91,8 @@
 
           &.i-section-tabs-scroll--scrollable {
             overflow-x: auto;
-            scrollbar-width: none;
             scroll-snap-type: x proximity;
+            scrollbar-width: none;
 
             &::-webkit-scrollbar {
               display: none;
@@ -100,22 +100,22 @@
 
             .i-section-tabs-header {
               flex: 0 0 auto;
-              white-space: nowrap;
               scroll-snap-align: start;
+              white-space: nowrap;
             }
           }
         }
 
         .i-section-tabs-chevron {
           display: flex;
-          align-items: center;
-          justify-content: center;
           flex: 0 0 auto;
+          justify-content: center;
+          align-items: center;
+          z-index: 2;
+          cursor: pointer;
           border: none;
           background: transparent;
           color: var(--i-text-subtle-color);
-          cursor: pointer;
-          z-index: 2;
 
           &.hidden {
             visibility: hidden;
@@ -123,8 +123,8 @@
           }
 
           &:hover {
-            color: var(--i-text-color);
             background-color: var(--i-color-gray-100);
+            color: var(--i-text-color);
           }
         }
 
@@ -196,11 +196,11 @@
           .i-section-tabs-header {
             flex: 0 0 auto;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             border-right: none;
-            background-color: transparent;
             border-bottom: 2px solid transparent;
+            background-color: transparent;
             padding: var(--i-padding-sm) var(--i-padding-lg);
             color: var(--i-text-subtle-color);
             /* Reset for descendants (e.g. a plain <span> in a custom <i-section-tab-header>) so
@@ -213,17 +213,17 @@
               background-color 0.15s;
 
             &.active {
-              box-shadow: none;
               position: relative;
               z-index: 1;
+              box-shadow: none;
+              border-bottom-color: var(--i-color-blue-500);
               background-color: transparent;
               color: var(--i-text-color);
-              border-bottom-color: var(--i-color-blue-500);
             }
 
             &:hover {
-              color: var(--i-text-color);
               background-color: var(--i-color-gray-100);
+              color: var(--i-text-color);
             }
 
             &:active {
@@ -255,5 +255,41 @@
         }
       }
     }
+  }
+}
+
+@layer components {
+  i-section > i-section-body {
+    --i-section-body-padding: var(--i-spacing-sm);
+    --i-surface-padding: 0px;
+    --i-surface-radius-top-left: 0px;
+    --i-surface-radius-top-right: 0px;
+    --i-surface-radius-bottom-left: 0px;
+    --i-surface-radius-bottom-right: 0px;
+  }
+  i-section > i-section-body:first-child {
+    --i-surface-radius-top-left: var(--i-radius-md);
+    --i-surface-radius-top-right: var(--i-radius-md);
+  }
+  i-section > i-section-body:last-child {
+    --i-surface-radius-bottom-left: var(--i-radius-md);
+    --i-surface-radius-bottom-right: var(--i-radius-md);
+  }
+  i-section-body.i-surface-content {
+    padding: var(--i-section-body-padding);
+  }
+  i-section-body.i-surface-content:not([data-layout='padded']):has(
+      > [data-i-surface='delegate']:only-child
+    ) {
+    --i-surface-padding: var(--i-section-body-padding);
+  }
+  i-section-body.i-surface-content:not([data-layout='padded']):has(
+      > :is([data-i-surface='flush'], [data-i-surface='delegate']):only-child
+    ),
+  i-section-body.i-surface-content[data-layout='flush'] {
+    padding: 0;
+  }
+  i-section-body.i-surface-content[data-layout='flush'] {
+    --i-surface-padding: 0px;
   }
 }

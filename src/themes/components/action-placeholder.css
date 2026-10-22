@@ -1,0 +1,10 @@
+@layer components {
+  i-action-placeholder.i-action-placeholder {
+    --i-background-color: initial;
+    display: inline-block;
+    flex: none;
+    box-sizing: border-box;
+    background: transparent;
+    pointer-events: none;
+  }
+}
