@@ -8,6 +8,24 @@
     gap: var(--i-spacing-3xs);
     color: var(--i-text-color);
 
+    &[mode='container'],
+    &[mode='fullpage'] {
+      flex: 1 1 auto;
+      box-sizing: border-box;
+      width: 100%;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    &[mode='container'] {
+      height: 100%;
+    }
+
+    &[mode='fullpage'] {
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+
     &[light='true'],
     &.light {
       color: var(--i-color-white);
@@ -15,6 +33,7 @@
 
     .spinner-border {
       display: inline-block;
+      flex-shrink: 0;
       animation: i-spinner-rotate 0.75s linear infinite;
       border: 0.25em solid currentColor;
       border-right-color: transparent;
