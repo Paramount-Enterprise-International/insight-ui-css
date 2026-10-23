@@ -637,3 +637,49 @@
     }
   }
 }
+
+@layer components {
+  .i-grid > .i-grid-viewport {
+    display: flex;
+    flex-direction: column;
+  }
+  .i-grid-viewport > :is(i-grid-header-row, i-grid-row, i-grid-expandable-row) {
+    flex: none;
+  }
+  .i-grid-empty {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: var(--i-region-state-min-height, var(--i-state-min-height, min(40vh, 240px)));
+    min-height: min-content;
+  }
+  .i-grid-empty > i-empty-state {
+    flex: 1;
+  }
+  .i-grid-footer {
+    flex: none;
+  }
+  .i-grid-empty__cell {
+    flex: 1;
+    min-width: 0;
+  }
+}
+@layer components {
+  .i-grid-empty[data-empty-density='compact'] {
+    height: auto;
+  }
+  .i-grid-empty[data-page-sized] {
+    height: calc(var(--i-grid-empty-rows) * var(--i-grid-empty-row-height, var(--i-size-md)));
+  }
+  .i-grid-empty__cell > i-empty-state.i-empty-state {
+    min-height: 0;
+  }
+  .i-grid[data-i-surface='flush'] {
+    border-top-right-radius: var(--i-surface-radius-top-right, var(--i-radius-md));
+    border-top-left-radius: var(--i-surface-radius-top-left, var(--i-radius-md));
+    border-bottom-right-radius: var(--i-surface-radius-bottom-right, var(--i-radius-md));
+    border-bottom-left-radius: var(--i-surface-radius-bottom-left, var(--i-radius-md));
+  }
+}

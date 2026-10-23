@@ -4,6 +4,7 @@
     flex: 1 1 auto;
     flex-direction: column;
     min-width: 0;
+    min-height: 0;
 
     .ih-content-header {
       --i-background-color: var(--i-color-white);
@@ -80,13 +81,31 @@
       }
     }
 
+    .ih-content-page {
+      display: flex;
+      position: relative;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .ih-content-page-loading {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: var(--i-background-color, var(--i-color-white));
+    }
+
     .ih-content-body {
       flex: 1 1 100%;
       gap: var(--i-gap-md);
+      box-sizing: border-box;
       padding: var(--i-padding-lg);
       width: 100%;
+      min-height: 0;
 
-      > *:not(router-outlet, i-has-mn-route) {
+      > *:not(router-outlet, i-has-mn-route, i-loading) {
         display: flex;
         flex-direction: column;
         gap: var(--i-gap-2xl);
@@ -94,6 +113,21 @@
           justify-content: center;
           align-items: center;
           min-height: 100%;
+        }
+      }
+
+      /* Propagate available height only along a page loader's ancestor chain. */
+      &:has(i-loading[mode='container']),
+      & :not(router-outlet):has(i-loading[mode='container']) {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: 0;
+        min-width: 0;
+        min-height: 0;
+
+        > router-outlet {
+          display: none;
         }
       }
     }

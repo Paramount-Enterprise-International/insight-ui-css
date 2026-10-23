@@ -261,6 +261,10 @@
         padding: var(--i-spacing-sm) var(--i-spacing-xs) 0;
         list-style: none;
       }
+
+      & > ul:last-child {
+        padding-bottom: var(--i-spacing-xs);
+      }
     }
 
     .ih-sidebar-footer {

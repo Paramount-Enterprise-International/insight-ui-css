@@ -1,5 +1,6 @@
 @layer themes {
   :root {
+    --i-state-min-height: min(40vh, 240px);
     --i-input-border-color: var(--i-color-gray-200);
     --i-input-border-focus-color: var(--i-color-blue-500);
     --i-input-border: 1px solid var(--i-input-border-color);

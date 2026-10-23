@@ -1,0 +1,55 @@
+@layer components {
+  .i-image-cropper {
+    --i-background-color: initial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--i-gap-md);
+    max-width: 100%;
+  }
+  .i-image-cropper__stage {
+    position: relative;
+    flex: none;
+    cursor: grab;
+    background: var(--i-color-gray-50);
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
+  }
+  .i-image-cropper__stage--circle {
+    border-radius: 50%;
+  }
+  .i-image-cropper__stage:active {
+    cursor: grabbing;
+  }
+  .i-image-cropper__stage[aria-disabled='true'] {
+    cursor: default;
+  }
+  .i-image-cropper__stage:focus-visible {
+    outline: var(--i-border-width) solid var(--i-color-blue-500);
+    outline-offset: var(--i-spacing-2xs);
+  }
+  .i-image-cropper__image {
+    position: absolute;
+    max-width: none;
+    pointer-events: none;
+  }
+  .i-image-cropper__ring {
+    position: absolute;
+    inset: 0;
+    border: var(--i-border);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .i-image-cropper__zoom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--i-gap-2xs);
+    width: 100%;
+    color: var(--i-text-subtle-color);
+    font-size: var(--i-text-sm);
+  }
+  .i-image-cropper__zoom input {
+    width: 100%;
+  }
+}

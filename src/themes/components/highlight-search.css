@@ -6,3 +6,9 @@
     /* font-weight: bold; */
   }
 }
+
+@layer components {
+  i-highlight-search.i-highlight-search {
+    display: contents;
+  }
+}

@@ -3,9 +3,6 @@
     --i-banner-warning-bg: var(--i-color-amber-100);
     --i-banner-warning-color: var(--i-color-gray-700);
     --i-banner-warning-border: var(--i-border-warning-color);
-    --i-info-notice-bg: var(--i-color-blue-50);
-    --i-info-notice-color: var(--i-color-blue-900);
-    --i-info-notice-border: var(--i-color-blue-200);
   }
 }
 @layer components {
@@ -26,12 +23,6 @@
     flex-basis: 540px;
     min-width: 0;
     overflow-wrap: anywhere;
-  }
-  .i-info-notice {
-    --i-background-color: var(--i-info-notice-bg);
-    border: var(--i-border-width) var(--i-border-style) var(--i-info-notice-border);
-    background-color: var(--i-background-color);
-    color: var(--i-info-notice-color);
   }
   .ih-shell-with-banner {
     display: flex;
