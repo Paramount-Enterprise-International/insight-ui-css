@@ -8,9 +8,10 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    min-height: 100%;
     width: 100%;
     min-width: 0;
+    height: 100%;
+    min-height: 100%;
 
     &.i-error-page--not-found {
       --i-error-page-icon-color: var(--i-text-primary-color);
@@ -24,18 +25,19 @@
 
     .i-error-page__section {
       flex: 1;
+      box-sizing: border-box;
       width: 100%;
     }
 
     .i-error-page__body {
       display: flex;
       flex: 1;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       box-sizing: border-box;
+      padding: var(--i-padding-3xl) var(--i-padding-2xl);
       width: 100%;
       min-height: var(--i-error-page-min-height);
-      padding: var(--i-padding-3xl) var(--i-padding-2xl);
     }
 
     .i-error-page__content {
@@ -44,8 +46,8 @@
       align-items: center;
       gap: var(--i-gap-2xl);
       width: 100%;
-      max-width: var(--i-error-page-content-width);
       min-width: 0;
+      max-width: var(--i-error-page-content-width);
       overflow-wrap: anywhere;
     }
 
@@ -53,8 +55,8 @@
     .i-error-page__actions {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: var(--i-gap-2xl);
     }
 
