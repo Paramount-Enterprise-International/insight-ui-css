@@ -14,12 +14,16 @@
     "prettier": "^3.7.4",
     "prettier-plugin-css-order": "^2.1.2",
     "typescript": "~5.9.3",
-    "vite": "^7.2.4"
+    "vite": "7.3.7"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.2.0",
     "@tailwindcss/vite": "^4.1.17",
     "highlight.js": "^11.11.1",
     "tailwindcss": "^4.1.17"
+  },
+  "engines": {
+    "node": ">=24.22.1 <25",
+    "npm": ">=11 <12"
   }
 }
