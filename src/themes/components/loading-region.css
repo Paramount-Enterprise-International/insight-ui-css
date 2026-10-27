@@ -60,8 +60,15 @@
   .i-loading-region__content[data-layout='flush'] {
     padding: 0;
   }
+  .i-loading-region__content:has(
+      > i-load-error:not([density='compact']):not([density='inline']):only-child
+    ),
   .i-loading-region__content:has(> i-empty-state:not([density='compact']):only-child) {
     min-height: var(--i-region-state-min-height, var(--i-state-min-height, min(40vh, 240px)));
+  }
+  .i-loading-region__content > i-load-error.i-load-error:only-child {
+    flex: 1;
+    min-height: var(--i-load-error-min-height, 0px);
   }
   .i-loading-region__content > i-empty-state.i-empty-state:only-child {
     flex: 1;
