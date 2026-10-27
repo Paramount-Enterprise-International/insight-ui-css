@@ -1,0 +1,146 @@
+@layer components {
+  .i-snackbar-viewport {
+    --i-snackbar-inset: var(--i-spacing-lg, 24px);
+    --i-snackbar-left: max(var(--i-snackbar-inset), env(safe-area-inset-left, 0px));
+    --i-snackbar-right: max(var(--i-snackbar-inset), env(safe-area-inset-right, 0px));
+    --i-snackbar-top: max(var(--i-snackbar-inset), env(safe-area-inset-top, 0px));
+    --i-snackbar-bottom: max(var(--i-snackbar-inset), env(safe-area-inset-bottom, 0px));
+    --i-snackbar-enter-offset: 8px;
+    --i-snackbar-shadow-space: var(--i-spacing-sm, 16px);
+    --i-snackbar-shadow:
+      0 2px 6px -2px var(--i-shadow-color, rgb(0 0 0 / 0.08)),
+      0 8px 24px -6px var(--i-shadow-color, rgb(0 0 0 / 0.08));
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    gap: var(--i-gap-sm);
+    z-index: 1001;
+    box-sizing: border-box;
+    border-radius: var(--i-radius-md);
+    padding: var(--i-snackbar-shadow-space);
+    width: max-content;
+    max-width: calc(
+      100vw - var(--i-snackbar-left) - var(--i-snackbar-right) + var(--i-snackbar-shadow-space) +
+        var(--i-snackbar-shadow-space)
+    );
+    max-height: calc(
+      100dvh - var(--i-snackbar-top) - var(--i-snackbar-bottom) + var(--i-snackbar-shadow-space) +
+        var(--i-snackbar-shadow-space)
+    );
+    overflow: auto;
+    overflow-anchor: none;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    pointer-events: none;
+  }
+  .i-snackbar-viewport::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  .i-snackbar-viewport[data-i-snackbar-viewport^='top-'] {
+    --i-snackbar-enter-offset: -8px;
+    top: calc(var(--i-snackbar-top) - var(--i-snackbar-shadow-space));
+  }
+  .i-snackbar-viewport[data-i-snackbar-viewport^='bottom-'] {
+    bottom: calc(var(--i-snackbar-bottom) - var(--i-snackbar-shadow-space));
+  }
+  .i-snackbar-viewport[data-i-snackbar-viewport$='-left'] {
+    left: calc(var(--i-snackbar-left) - var(--i-snackbar-shadow-space));
+    align-items: flex-start;
+  }
+  .i-snackbar-viewport[data-i-snackbar-viewport$='-center'] {
+    left: calc((100vw + var(--i-snackbar-left) - var(--i-snackbar-right)) / 2);
+    align-items: center;
+    transform: translateX(-50%);
+  }
+  .i-snackbar-viewport[data-i-snackbar-viewport$='-right'] {
+    right: calc(var(--i-snackbar-right) - var(--i-snackbar-shadow-space));
+    align-items: flex-end;
+  }
+  .i-snackbar {
+    display: block;
+    flex: none;
+    animation: i-snackbar-enter 180ms ease both;
+    width: var(--i-snackbar-max-width, 400px);
+    max-width: 100%;
+    pointer-events: auto;
+  }
+  .i-snackbar[hidden] {
+    display: none !important;
+  }
+  .i-snackbar--closing {
+    animation: i-snackbar-exit 180ms ease both;
+  }
+  .i-snackbar > i-banner.i-banner {
+    box-sizing: border-box;
+    box-shadow: var(--i-snackbar-shadow);
+    width: 100%;
+  }
+  .i-snackbar__layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--i-gap-md);
+  }
+  .i-snackbar__copy {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+  .i-snackbar__title {
+    font-weight: var(--i-font-semibold, 600);
+  }
+  .i-snackbar__content:empty {
+    display: none;
+  }
+  .i-snackbar__layout > i-button {
+    flex: none;
+  }
+  .i-snackbar__content-action {
+    display: block;
+    cursor: pointer;
+    border: 0;
+    border-radius: var(--i-radius-md);
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    overflow-wrap: anywhere;
+  }
+  .i-snackbar__content-action:focus-visible {
+    outline: var(--i-border-width) solid currentColor;
+    outline-offset: var(--i-spacing-3xs);
+  }
+  @keyframes i-snackbar-enter {
+    from {
+      transform: translateY(var(--i-snackbar-enter-offset));
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes i-snackbar-exit {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(var(--i-snackbar-enter-offset));
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .i-snackbar-viewport {
+      scroll-behavior: auto;
+    }
+    .i-snackbar,
+    .i-snackbar--closing {
+      animation: none;
+    }
+  }
+}
