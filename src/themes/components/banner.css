@@ -5,7 +5,7 @@
     align-items: flex-start;
     gap: var(--i-gap-sm);
     border: var(--i-border-width) var(--i-border-style) var(--i-banner-border);
-    border-radius: var(--i-radius-3xs);
+    border-radius: var(--i-radius-md);
     background: var(--i-banner-bg);
     padding: var(--i-padding-sm) var(--i-padding-md);
     color: var(--i-banner-color);
@@ -49,6 +49,7 @@
   }
   .i-banner__icon {
     flex: none;
+    min-block-size: 1lh;
   }
   .i-banner__close {
     display: inline-flex;

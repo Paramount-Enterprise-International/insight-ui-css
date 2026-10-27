@@ -50,7 +50,6 @@
       border-bottom: var(--i-border);
       width: 100%;
       min-width: 100%;
-      overflow-x: clip;
       font-weight: 600;
 
       i-grid-header-cell {

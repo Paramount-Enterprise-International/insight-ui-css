@@ -98,25 +98,6 @@
     }
   }
 
-  i-notification-snackbar {
-    position: fixed;
-    right: var(--i-spacing-lg);
-    bottom: var(--i-spacing-lg);
-    z-index: 1001;
-    max-width: min(400px, calc(100vw - 2 * var(--i-spacing-lg)));
-    .notification-snackbar {
-      box-shadow: var(--i-shadow-md);
-      background: var(--i-color-gray-700);
-      color: var(--i-color-white);
-      overflow-wrap: anywhere;
-    }
-    .snackbar-content {
-      cursor: pointer;
-      color: inherit;
-      font: inherit;
-    }
-  }
-
   :is(i-notification-bell, i-notification-drawer) {
     .i-clickable {
       width: calc(var(--i-icon-lg) + 2 * var(--i-padding-xs));

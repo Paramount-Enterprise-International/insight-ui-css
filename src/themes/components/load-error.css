@@ -1,6 +1,16 @@
 @layer components {
   i-load-error.i-load-error {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: var(
+      --i-load-error-min-height,
+      var(--i-region-state-min-height, var(--i-state-min-height, min(40vh, 240px)))
+    );
+  }
+  i-load-error.i-load-error[density='compact'],
+  i-load-error.i-load-error[density='inline'] {
+    min-height: 0;
   }
   .i-load-error__content {
     display: flex;
@@ -9,7 +19,9 @@
     align-items: center;
     gap: var(--i-gap-xs);
     padding: var(--i-padding-2xl) var(--i-padding-md);
-    height: 100%;
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
     text-align: center;
   }
   .i-load-error__content p {
