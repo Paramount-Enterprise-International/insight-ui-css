@@ -143,6 +143,14 @@
       margin: 0;
     }
 
+    .i-options__empty {
+      box-sizing: border-box;
+      padding: var(--i-spacing-4xs) var(--i-spacing-sm);
+      color: var(--i-text-subtle-color);
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
     .i-option {
       display: flex;
       align-items: center;
