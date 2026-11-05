@@ -1,5 +1,5 @@
 // vite.config.ts
-import { defaultAllowedOrigins,defineConfig } from 'vite';
+import { defaultAllowedOrigins, defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -41,7 +41,7 @@ export default defineConfig({
         defaultAllowedOrigins,
         'https://account-local.paramountenterprise.co.id',
         'https://account-dev.paramountenterprise.co.id',
-        'https://atlas-local.paramount-land.com:8443',
+        'https://atlas-local.paramount-land.com',
         'https://atlas-dev.paramount-land.com',
       ],
     },
