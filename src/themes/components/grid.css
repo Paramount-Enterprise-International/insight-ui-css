@@ -561,17 +561,19 @@
       }
 
       .i-grid-tree-toggle {
+        --i-button-padding: 0;
         display: inline-flex;
-        flex: 0 0 auto;
+        flex: 0 0 var(--i-size-2xs);
         cursor: pointer;
         margin-right: 8px;
+        width: var(--i-size-2xs);
       }
 
       .i-grid-tree-spacer {
         display: inline-flex;
-        flex: 0 0 16px;
+        flex: 0 0 var(--i-size-2xs);
         margin-right: 8px;
-        width: 16px;
+        width: var(--i-size-2xs);
       }
 
       .i-grid-tree-checkbox,
